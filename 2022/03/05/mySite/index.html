@@ -1,37 +1,27 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="en">
+{{ partial("_partial/head") }}
+<body style="display: flex; flex-direction: column; min-height: 100vh;">
+{{ partial("_partial/header") }}
 
+ {{ partial("_partial/announcement-js", {item: page}) }}
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
-
-{% block page_class %}page-post-detail{% endblock %}
-
-
-{% block content %}
-
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
-
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
-    </div>
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div style="flex: 1;">
+      {{ body }}
   </div>
 
-{% endblock %}
+  {{ partial("_partial/footer") }}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+  <br>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  <div id="footer-nav" class='footer-nav'>
+		{{ partial('_partial/nav', {position: 'footer'}) }}
+	</div>
+
+  {{ partial("_partial/after-footer") }}
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>

@@ -1,23 +1,27 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="en">
+{{ partial("_partial/head") }}
+<body style="display: flex; flex-direction: column; min-height: 100vh;">
+{{ partial("_partial/header") }}
 
-{% block title %}{{ config.title }}{% if theme.index_with_subtitle and config.subtitle %} - {{config.subtitle }}{% endif %}{% endblock %}
+ {{ partial("_partial/announcement-js", {item: page}) }}
 
-{% block page_class %}
-  {% if is_home() %}page-home{% endif -%}
-{% endblock %}
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div style="flex: 1;">
+      {{ body }}
+  </div>
 
-{% block content %}
-  <section id="posts" class="posts-expand">
-    {% for post in page.posts %}
-      {{ post_template.render(post, true) }}
-    {% endfor %}
-  </section>
+  {{ partial("_partial/footer") }}
 
-  {% include '_partials/pagination.swig' %}
-{% endblock %}
+  <br>
 
-{% block sidebar %}
-  {{ sidebar_template.render(false) }}
-{% endblock %}
+  <div id="footer-nav" class='footer-nav'>
+		{{ partial('_partial/nav', {position: 'footer'}) }}
+	</div>
+
+  {{ partial("_partial/after-footer") }}
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
