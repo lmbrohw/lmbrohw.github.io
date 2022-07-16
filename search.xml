@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>blog1st</title>
+      <link href="/blog1st/"/>
+      <url>/blog1st/</url>
+      
+        <content type="html"><![CDATA[<h1 id="1-重庆大学"><a href="#1-重庆大学" class="headerlink" title="1 重庆大学"></a>1 重庆大学</h1><h2 id="1-1-计算机学院"><a href="#1-1-计算机学院" class="headerlink" title="1.1 计算机学院"></a>1.1 计算机学院</h2><h3 id="1-1-1-计算机科学与技术"><a href="#1-1-1-计算机科学与技术" class="headerlink" title="1.1.1 计算机科学与技术"></a>1.1.1 计算机科学与技术</h3><p>本篇文章用于测试网站的功能，文章显示页面的样式！</p><hr><p>给出代码块</p><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'hello world!'</span><span class="token punctuation">)</span><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'heyhw!'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p><code>print('heyhw!')</code></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+  
+  
+</search>
