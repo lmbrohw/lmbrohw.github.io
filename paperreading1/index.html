@@ -17,17 +17,17 @@
 
 
     <title>论文翻译1-CycleGAN | HWblog</title>
-    <link rel="icon" type="image/png" href="../icon.png">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/lmbrohw/lmbrohw.github.io../icon.png">
 
-    <link rel="stylesheet" type="text/css" href="../libs/awesome/css/all.css">
-    <link rel="stylesheet" type="text/css" href="../libs/materialize/materialize.min.css">
-    <link rel="stylesheet" type="text/css" href="../libs/aos/aos.css">
-    <link rel="stylesheet" type="text/css" href="../libs/animate/animate.min.css">
-    <link rel="stylesheet" type="text/css" href="../libs/lightGallery/css/lightgallery.min.css">
-    <link rel="stylesheet" type="text/css" href="../css/matery.css">
-    <link rel="stylesheet" type="text/css" href="../css/my.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/lmbrohw/lmbrohw.github.io../libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/lmbrohw/lmbrohw.github.io../libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/lmbrohw/lmbrohw.github.io../libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/lmbrohw/lmbrohw.github.io../libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/lmbrohw/lmbrohw.github.io../libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/lmbrohw/lmbrohw.github.io../css/matery.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/lmbrohw/lmbrohw.github.io../css/my.css">
 
-    <script src="../libs/jquery/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/lmbrohw/lmbrohw.github.io../libs/jquery/jquery.min.js"></script>
 
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
@@ -47,7 +47,7 @@
             <div class="brand-logo">
                 <a href="../index.html" class="waves-effect waves-light">
                     
-                    <img src="../logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/lmbrohw/lmbrohw.github.io../logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span"></span>
                 </a>
@@ -124,7 +124,7 @@
 
     <div class="mobile-head bg-color">
         
-        <img src="../medias/avatar.jpg" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/lmbrohw/lmbrohw.github.iohttps://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/avatar.jpg" class="logo-img circle responsive-img">
         
         <div class="logo-desc">
             
@@ -208,7 +208,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../images/cover.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/cover.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -226,7 +226,7 @@
 <main class="post-container content">
 
     
-    <link rel="stylesheet" href="../libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lmbrohw/lmbrohw.github.io../libs/tocbot/tocbot.css">
 <style>
     #articleContent h1::before,
     #articleContent h2::before,
@@ -375,14 +375,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    6.8k
+                    7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    24 分
+                    25 分
                 </div>
                 
 
@@ -398,7 +398,7 @@
 
         
         <!-- 是否加载使用自带的 prismjs. -->
-        <link rel="stylesheet" href="../libs/prism/prism.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lmbrohw/lmbrohw.github.io../libs/prism/prism.css">
         
 
         
@@ -433,7 +433,7 @@
 \begin{array}{ll}
 \left\{x_{i}\right\}_{i=1}^{N} & x_{i} \in X, x \sim p_{\text {data }}(x) \\
 \left\{y_{i}\right\}_{i-1}^{M} & y_{i} \in Y, y \sim p_{\text {data }}(y)
-\end{array}</script><p>如图3所示，我们的方法包含了两个映射函数<script type="math/tex">ss</script>：</p>
+\end{array}</script><p>如图3所示，我们的方法包含了两个映射函数：</p>
 <script type="math/tex; mode=display">
 \begin{array}{ll}
 \left\{x_{i}\right\}_{i=1}^{N} & x_{i} \in X, x \sim p_{\text {data }}(x) \\
@@ -447,16 +447,31 @@
 \end{array}</script><p>当映射G尝试生成与数据域Y相似的图像G(x)时，判别器DY致力于区分转换得到的G(x)和真正的样例图像y。我们为映射函数F：Y→X和判别器DX引入一个类似的对抗损失函数L_GAN (G,D_X,Y,X)。</p>
 <h2 id="4-2-循环一致性损失"><a href="#4-2-循环一致性损失" class="headerlink" title="4.2 循环一致性损失"></a>4.2 循环一致性损失</h2><p>理论上对抗训练可以学习到映射G和F，并分别生成与目标域Y和X同分布的输出（严格地讲，这要求映射G与F是一个随机函数）。然而在容量较大情况下，网络可以将同一组输入图像映射到目标域中任何随机的图像排列，同时目标域中任何学习到的映射都可以产生与目标分布相匹配的输出分布。为了进一步减少可能的映射函数的空间，我们认为学习到的映射函数应该具有循环一致性，对于域X中的每一张图像x，该图像转换循环应该能够让图像x转换回到原始图像：x→G(x) →F(G(x)) ≈x,我们称之为前向循环一致性。类似地，对于Y域中的每一张图像y，生成器G和F也应该满足后向循环一致性：y→F(y) →G(F(y)) ≈y我们可以使用一个循环一致性损失来激励这种行为：</p>
 <script type="math/tex; mode=display">
-</script><p>在预备实验中，我们也尝试用F(G(x)) 与x 之间、G(F(Y)) 与y 之间的对抗损失代替损失中的L1 范数，但是没有观察到更好的性能。在arXiv版本中可以观察到由循环一致性损失引起的行为。</p>
-<h2 id="4-3-完整的模型"><a href="#4-3-完整的模型" class="headerlink" title="4.3 完整的模型"></a>4.3 完整的模型</h2><p>我们的完整的模型对象是：<br>█(█(L(G,F,D_X,D_Y )=&amp;L_GAN (G,D_Y,X,Y)@&amp;+L_GAN (F,D_X,Y,X)@+λL_cyc (G,F) )#(3) )</p>
-<p>其中λ 控制两个对象的相对重要性。我们致力于解决：<br>█(G^<em>,F^</em>=arg⁡(min)┬(G,F)  (max)┬(D_x,D_Y ) L(G,F,D_X,D_Y )#(4) )</p>
-<p>{2 x \log 2 y<br>注意，我们的方法能被看作训练两个“自动编码器”：<br>█(&amp;F∘G:X→X@&amp;G∘F:Y→Y) </p>
+\begin{aligned}
+\operatorname{Loss}_{\text {cycle }}=\mathbb{E}_{x \sim p_{\text {data }}(x)}\left[\|F(G(x))-x\|_{1}\right] \\
+&+\mathbb{E}_{y \sim p_{\text {data }}(y)}\left[\|G(F(y))-y\|_{1}\right] .
+\end{aligned}</script><p>在预备实验中，我们也尝试用F(G(x)) 与x 之间、G(F(Y)) 与y 之间的对抗损失代替损失中的L1 范数，但是没有观察到更好的性能。在arXiv版本中可以观察到由循环一致性损失引起的行为。</p>
+<h2 id="4-3-完整的模型"><a href="#4-3-完整的模型" class="headerlink" title="4.3 完整的模型"></a>4.3 完整的模型</h2><p>我们的完整的模型对象是：</p>
 <script type="math/tex; mode=display">
-\{2 x \log 2 y</script><p>然而，每一个自动编码器都有特殊的内部结构：它们通过中间介质将图片映射到自身，这个中间介质是图像的另一个域的转换。这种配置也可以被视为一个“对抗性自动编码器”的特例，它使用对抗损失来训练自动编码器的瓶颈层，以匹配任意的目标分布。在我们的例子里，X→Y自动编码器的目标分布是Y域分布。在5.1.3节，我们将我们的方法与消去了完整对象的模型进行比较，经验表明，这两个对象（损失函数）在获得高质量结果上起关键作用。</p>
+\begin{aligned}
+\mathcal{L}\left(G, F, D_{X}, D_{Y}\right)=& \mathcal{L}_{\mathrm{GAN}}\left(G, D_{Y}, X, Y\right) \\
+&+\mathcal{L}_{\mathrm{GAN}}\left(F, D_{X}, Y, X\right) \\
++\lambda \mathcal{L}_{\mathrm{cyc}}(G, F)
+\end{aligned}</script><p>对象的相对重要性。我们致力于解决:</p>
+<script type="math/tex; mode=display">
+G^{*}, F^{*}=\arg \min _{G, F} \max _{D_{x}, D_{Y}} \mathcal{L}\left(G, F, D_{X}, D_{Y}\right)</script><p>法能被看作训练两个 “自动编码器”：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&F \circ G: X \rightarrow X \\
+&G \circ F: Y \rightarrow Y
+\end{aligned}</script><p>然而，每一个自动编码器都有特殊的内部结构：它们通过中间介质将图片映射到自身，这个中间介质是图像的另一个域的转换。这种配置也可以被视为一个“对抗性自动编码器”的特例，它使用对抗损失来训练自动编码器的瓶颈层，以匹配任意的目标分布。在我们的例子里，X→Y自动编码器的目标分布是Y域分布。在5.1.3节，我们将我们的方法与消去了完整对象的模型进行比较，经验表明，这两个对象（损失函数）在获得高质量结果上起关键作用。</p>
 <h1 id="5-实现"><a href="#5-实现" class="headerlink" title="5 实现"></a>5 实现</h1><p>我们采用了J.Johnson文章中的生成网络架构，J.Johnson等人在神经风格转换和超分辨率方面取得了令人印象深刻的成果。这个网络架构包含两个步长为2的卷积层，几个残差模块和两个1/2步长的卷积层。与Johnson的方法类似，我们使用了正则化，对于判别网络，我们使用70×70的PatchGANs，PatchGANs致力于辨别70×70的重叠图像块的真假。这种补丁级的判别器结构比完整的图像判别器拥有更少的参数，并且可以以一种完全卷积的方式被应用于任意尺寸的图像。</p>
 <p>我们将最近研究工作中的两种技术应用到我们的模型中以稳定模型训练。第一，对于LGAN，我们用最小二乘损失替代负对数似然损失。这个损失函数在训练和生成更高质量的结果期间表现得更稳定。等式1就变为：</p>
 <script type="math/tex; mode=display">
-</script><p>第二，为了减小模型训练时的震荡，我们遵循Shrivastava 等人的策略，用生成图像的历史而不是最新生成网络产生的图像来更新判别器DX和DY。我们使用一个图像缓存器来存储最近生成的50张图片。</p>
+\begin{aligned}
+\mathcal{L}_{\text {LSGAN }}\left(G, D_{Y}, X, Y\right) &=\mathbb{E}_{y \sim p_{\text {data }}(y)}\left[\left(D_{Y}(y)-1\right)^{2}\right] \\
+&+\mathbb{E}_{x \sim p_{\text {data }}(x)}\left[D_{Y}(G(x))^{2}\right]
+\end{aligned}</script><p>第二，为了减小模型训练时的震荡，我们遵循Shrivastava 等人的策略，用生成图像的历史而不是最新生成网络产生的图像来更新判别器DX和DY。我们使用一个图像缓存器来存储最近生成的50张图片。</p>
 <p>请参阅我们的arXiv论文来获取更多的关于数据集、体系结构和训练程序的细节。</p>
 <p><img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/4.png" alt="" title="不同方法在城市景观数据上训练的标记→照片的映射，从左至右：输入, BiGAN/ALI, CoGAN, CycleGAN(本方法),在成对数据上训练的pix2pix，以及真实图片"></p>
 <h1 id="6-结果"><a href="#6-结果" class="headerlink" title="6 结果"></a>6 结果</h1><p>我们首先将我们的方法与最近的关于使用成对数据集完成未配对的图像到图像的转换方法做比较，输入输出对可用于评估。然后我们研究了对抗损失和循环一致性损失的重要性，并将我们的方法与方法的几种变体进行比较。最后，在不存在成对数据情况下，我们在更大的应用范围内证明了算法的通用性。为了简洁，我们将我们的方法称为CycleGAN。</p>
@@ -472,8 +487,8 @@
 <h3 id="5-1-2-与Baseline对比"><a href="#5-1-2-与Baseline对比" class="headerlink" title="5.1.2 与Baseline对比"></a>5.1.2 与Baseline对比</h3><p>如图4图5所示，我们不能在任何基线模型上取得令人信服的结果。另一方面，我们的方法通常能够产生与完全监督的pix2pix具有同等质量的转换结果。我们排除了图像中的pixel loss+GAN和feature loss+GAN，因为这两种方法都无法产生接近目标域的结果。</p>
 <p>此外，我们的方法与基线模型通过三种方式进行了定量比较。首先，我们在AMT工人上进行“真对假”的研究来评估主观现实主义。第二，我们在城市景观数据上训练图片→标签的任务，将输出标签图像与城市景观的标准指标得到的真实图像进行比较。最后，我们在相同的数据集上训练标签→图片任务，用一个现成的全卷积语义分割网络评估输出的图片。我们发现，在这三个实验中，我们的方法明显优于基线模型。表1展示了在AMT感知现实主义任务中的表现。我们看到我们的方法能够在大约四分之一的地图→图片和图片→地图的实验中骗过参与者，而几乎所有的基线模型都不能做到如此。表2和表3评估了在城市景观图像的标注→图片任务的性能，我们的方法在这两种情况下都优于基线模型。每个实验的详细过程和结果可以在我们的arXiv版本中找到。</p>
 <h3 id="6-1-3-消融研究"><a href="#6-1-3-消融研究" class="headerlink" title="6.1.3 消融研究"></a>6.1.3 消融研究</h3><p>我们对全损失的消融进行了比较，图6展示了几个定量示例。移除对抗损失或者循环一致性损失都会大大降低结果质量。因此我们认为这两项对我们实验的结果都至关重要。我们也在单向循环损失上评估了我们的方法：</p>
-<script type="math/tex; mode=display">
-</script><p>我们发现它通常会导致训练不稳定，并导致模式崩溃，尤其是对于被移除的映射方向。我们也定量测了城市景观照片→标签任务上的消融，该测量结果可以在我们的论文arXiv版本中找到。</p>
+<p>$\mathrm{GAN}+$ 前向循环损失: loss $\mathbb{E}<em>{x \sim p</em>{\text {data }}}(x)\left[|F(G(x))-x|<em>{1}\right]$<br>$\mathrm{GAN}+$ 后向循环损失: $\operatorname{loss} \mathbb{E}</em>{y \sim p<em>{\text {data }}(y)}\left[|G(F(y))-y|</em>{1}\right]$</p>
+<p>我们发现它通常会导致训练不稳定，并导致模式崩溃，尤其是对于被移除的映射方向。我们也定量测了城市景观照片→标签任务上的消融，该测量结果可以在我们的论文arXiv版本中找到。</p>
 <p><img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/9.png" alt="" title="在城市景观上训练的标签↔图片映射方法的不同变体。从左至右：输入，单独的循环一致性损失，单独的对抗损失，GAN+前向循环一致性损失，GAN+后向循环一致性损失，CycleGAN（本方法）和真实图像。单独的循环一致性损失和GAN+后向循环一致性损失不能产生与目标域相似的图像。单独的对抗损失和GAN+前向循环一致性损失出现模式崩溃。无论输入图片是什么都能产生完全相同的标签映射"></p>
 <h2 id="6-2-应用"><a href="#6-2-应用" class="headerlink" title="6.2 应用"></a>6.2 应用</h2><p>我们在不存在成对训练数据情况下演示了我们的方法的几种应用，我们观察到在训练数据上的转换比在测试数据上通常更有吸引力。应用在所有训练数据和测试数据的完整结果可以在我们项目的网站上看到。</p>
 <p>这个模型被训练用来将Imagenet上的一类物品转换到另一类（每一类包含大约1000张训练图像）。Turmukhambetov提出了一个子空间模型来将一个物品转换到另一个相同类别的物品，但是我们的方法致力于两个视觉上相似但类别不同的物品之间的变形。</p>
@@ -481,7 +496,10 @@
 <p>我们用从Flickr和WikiArt下载的风景图片来训练这个模型，注意，与最近的“神经风格迁移”工作不同的是，我们的方法学习仿造艺术作品集，而不是迁移一件艺术作品的风格。在5.2节我们对结果做了对比。</p>
 <p>从画作中生成照片 对于画作→照片，我们发现引入一个额外损失使映射能保持输入输出间的色彩成分是有用的。特别地，在采用了Taigman的技术后，当真实的目标域示例被提供用作生成器的输入，规范化生成器以接近恒等映射。</p>
 <script type="math/tex; mode=display">
-</script><p>在不使用Lidentity时，生成器G和F可以在对色调没有要求时自由地改变输入图像的色调。例如，当学习Monet画作和Flickr照片之间的映射时，生成器经常将白天的画作映射到黄昏时拍的照片，因为这样的映射在对抗损失和循环一致性损失上可能同等有效。身份映射损失的影响可以在arXiv论文中找到。</p>
+\begin{aligned}
+\mathcal{L}_{G A N}(G, F) &=\mathbb{E}_{y \sim p_{\text {dait }}}\left[\|G(y)-y\|_{1}\right] \\
+&+\mathbb{E}_{x \sim p_{\text {data }}}\left[\|F(x)-x\|_{1}\right]
+\end{aligned}</script><p>在不使用Lidentity时，生成器G和F可以在对色调没有要求时自由地改变输入图像的色调。例如，当学习Monet画作和Flickr照片之间的映射时，生成器经常将白天的画作映射到黄昏时拍的照片，因为这样的映射在对抗损失和循环一致性损失上可能同等有效。身份映射损失的影响可以在arXiv论文中找到。</p>
 <p><img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/10.png" alt="" title="几个图像转换问题的结果，这些图片是相对成功的结果，有关更全面的结果，请访问我们的网站"></p>
 <p><img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/11.png" alt="" title="我们将输入的图像转换成不同的艺术风格，请访问我们的网站获取更多示例"></p>
 <p>在图9，我们展示了将Monet画作转换为照片的结果，这些图片显示了被包括在训练集中的画作的转换结果，而本文中的其他实验，我们仅仅评估和展示测试集结果。因为训练集不包括成对数据，所以为训练集提供看似合理的转换结果是一项重要的任务。确实，自从Monet不再创作新的画作时，泛化看不到“测试集”的原画作不是一个迫切的问题。</p>
@@ -579,12 +597,12 @@
                     
                 </div>
                 <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
-                    <link rel="stylesheet" type="text/css" href="../libs/share/css/share.min.css">
+                    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/lmbrohw/lmbrohw.github.io../libs/share/css/share.min.css">
 <div id="article-share">
 
     
     <div class="social-share" data-sites="twitter,facebook,google,qq,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
-    <script src="../libs/share/js/social-share.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/lmbrohw/lmbrohw.github.io../libs/share/js/social-share.min.js"></script>
     
 
     
@@ -702,10 +720,10 @@
                         <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
                     </ul>
                     <div id="alipay">
-                        <img src="../medias/reward/alipay.JPG" class="reward-img" alt="支付宝打赏二维码">
+                        <img src="https://cdn.jsdelivr.net/gh/lmbrohw/lmbrohw.github.io../medias/reward/alipay.JPG" class="reward-img" alt="支付宝打赏二维码">
                     </div>
                     <div id="wechat">
-                        <img src="../medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码">
+                        <img src="https://cdn.jsdelivr.net/gh/lmbrohw/lmbrohw.github.io../medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码">
                     </div>
                 </div>
             </div>
@@ -750,7 +768,7 @@
                 <a href="">
                     <div class="card-image">
                         
-                        <img src="../images/cover.png" class="responsive-img" alt="论文翻译1-CycleGAN">
+                        <img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/cover.png" class="responsive-img" alt="论文翻译1-CycleGAN">
                         
                         <span class="card-title">论文翻译1-CycleGAN</span>
                     </div>
@@ -811,7 +829,7 @@
                 <a href="../blog1st/">
                     <div class="card-image">
                         
-                        <img src="../images/yunhu.jpg" class="responsive-img" alt="blog1st">
+                        <img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/yunhu.jpg" class="responsive-img" alt="blog1st">
                         
                         <span class="card-title">blog1st</span>
                     </div>
@@ -846,21 +864,21 @@
 
 
 <!-- 代码块功能依赖 -->
-<script type="text/javascript" src="../libs/codeBlock/codeBlockFuction.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/lmbrohw/lmbrohw.github.io../libs/codeBlock/codeBlockFuction.js"></script>
 
 <!-- 代码语言 -->
 
-<script type="text/javascript" src="../libs/codeBlock/codeLang.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/lmbrohw/lmbrohw.github.io../libs/codeBlock/codeLang.js"></script>
 
 
 <!-- 代码块复制 -->
 
-<script type="text/javascript" src="../libs/codeBlock/codeCopy.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/lmbrohw/lmbrohw.github.io../libs/codeBlock/codeCopy.js"></script>
 
 
 <!-- 代码块收缩 -->
 
-<script type="text/javascript" src="../libs/codeBlock/codeShrink.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/lmbrohw/lmbrohw.github.io../libs/codeBlock/codeShrink.js"></script>
 
 
     </div>
@@ -881,7 +899,7 @@
 </div>
 
 
-<script src="../libs/tocbot/tocbot.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/lmbrohw/lmbrohw.github.io../libs/tocbot/tocbot.min.js"></script>
 <script>
     $(function () {
         tocbot.init({
@@ -962,11 +980,18 @@
 </main>
 
 
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
+
 
 
     <footer class="page-footer bg-color">
     
-        <link rel="stylesheet" href="../libs/aplayer/APlayer.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lmbrohw/lmbrohw.github.io../libs/aplayer/APlayer.min.css">
 <style>
     .aplayer .aplayer-lrc p {
         
@@ -1007,7 +1032,7 @@
     </div>
 </div>
 
-<script src="../libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/lmbrohw/lmbrohw.github.io../libs/aplayer/APlayer.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
 
     
@@ -1021,7 +1046,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">6.8k</span>&nbsp;字
+                class="white-color">7k</span>&nbsp;字
             
             
             
@@ -1234,12 +1259,12 @@ $(function () {
 </div>
 
 
-    <script src="../libs/materialize/materialize.min.js"></script>
-    <script src="../libs/masonry/masonry.pkgd.min.js"></script>
-    <script src="../libs/aos/aos.js"></script>
-    <script src="../libs/scrollprogress/scrollProgress.min.js"></script>
-    <script src="../libs/lightGallery/js/lightgallery-all.min.js"></script>
-    <script src="../js/matery.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/lmbrohw/lmbrohw.github.io../libs/materialize/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/lmbrohw/lmbrohw.github.io../libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/lmbrohw/lmbrohw.github.io../libs/aos/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/lmbrohw/lmbrohw.github.io../libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/lmbrohw/lmbrohw.github.io../libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/lmbrohw/lmbrohw.github.io../js/matery.js"></script>
 
     <!-- Baidu Analytics -->
 
@@ -1261,7 +1286,7 @@ $(function () {
 
     
     
-    <script async src="../libs/others/busuanzi.pure.mini.js"></script>
+    <script async src="https://cdn.jsdelivr.net/gh/lmbrohw/lmbrohw.github.io../libs/others/busuanzi.pure.mini.js"></script>
     
 
     
@@ -1276,7 +1301,7 @@ $(function () {
     
 
     
-    <script src="../libs/instantpage/instantpage.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/gh/lmbrohw/lmbrohw.github.io../libs/instantpage/instantpage.js" type="module"></script>
     
 
 </body>
