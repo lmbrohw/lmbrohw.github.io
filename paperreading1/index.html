@@ -484,11 +484,14 @@ G^{*}, F^{*}=\arg \min _{G, F} \max _{D_{x}, D_{Y}} \mathcal{L}\left(G, F, D_{X}
 <p><img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/8.png" alt="" title="不同方法在城市景观图照片→标注的分类性能"></p>
 <p><strong>BiGAN/ALI</strong> 无条件约束GAN训练了一个生成器G：Z→X，将随机噪声Z映射到图像X，BiGAN和ALI提议学习一个逆向映射函数F：X→Z，即使他们最初的设计是为了将一个潜在的向量z映射到图像x，我们实现了相同的目标，将原始图像x映射到目标图像y。</p>
 <p><strong>pix2pix</strong> 我们也同在成对数据上训练的pix2pix做了比较，为了看看在没有使用成对数据情况我们能够与这个上限有多接近。<br>为了公平的比较，我们采用了同我们的方法相同的架构和细节（除了Co GAN）来实现所有的基线模型。由于架构上的差异，我们使用了CoGAN的公共的实现版本。</p>
-<h3 id="5-1-2-与Baseline对比"><a href="#5-1-2-与Baseline对比" class="headerlink" title="5.1.2 与Baseline对比"></a>5.1.2 与Baseline对比</h3><p>如图4图5所示，我们不能在任何基线模型上取得令人信服的结果。另一方面，我们的方法通常能够产生与完全监督的pix2pix具有同等质量的转换结果。我们排除了图像中的pixel loss+GAN和feature loss+GAN，因为这两种方法都无法产生接近目标域的结果。</p>
+<h3 id="6-1-2-与Baseline对比"><a href="#6-1-2-与Baseline对比" class="headerlink" title="6.1.2 与Baseline对比"></a>6.1.2 与Baseline对比</h3><p>如图4图5所示，我们不能在任何基线模型上取得令人信服的结果。另一方面，我们的方法通常能够产生与完全监督的pix2pix具有同等质量的转换结果。我们排除了图像中的pixel loss+GAN和feature loss+GAN，因为这两种方法都无法产生接近目标域的结果。</p>
 <p>此外，我们的方法与基线模型通过三种方式进行了定量比较。首先，我们在AMT工人上进行“真对假”的研究来评估主观现实主义。第二，我们在城市景观数据上训练图片→标签的任务，将输出标签图像与城市景观的标准指标得到的真实图像进行比较。最后，我们在相同的数据集上训练标签→图片任务，用一个现成的全卷积语义分割网络评估输出的图片。我们发现，在这三个实验中，我们的方法明显优于基线模型。表1展示了在AMT感知现实主义任务中的表现。我们看到我们的方法能够在大约四分之一的地图→图片和图片→地图的实验中骗过参与者，而几乎所有的基线模型都不能做到如此。表2和表3评估了在城市景观图像的标注→图片任务的性能，我们的方法在这两种情况下都优于基线模型。每个实验的详细过程和结果可以在我们的arXiv版本中找到。</p>
 <h3 id="6-1-3-消融研究"><a href="#6-1-3-消融研究" class="headerlink" title="6.1.3 消融研究"></a>6.1.3 消融研究</h3><p>我们对全损失的消融进行了比较，图6展示了几个定量示例。移除对抗损失或者循环一致性损失都会大大降低结果质量。因此我们认为这两项对我们实验的结果都至关重要。我们也在单向循环损失上评估了我们的方法：</p>
-<p>$\mathrm{GAN}+$ 前向循环损失: loss $\mathbb{E}<em>{x \sim p</em>{\text {data }}}(x)\left[|F(G(x))-x|<em>{1}\right]$<br>$\mathrm{GAN}+$ 后向循环损失: $\operatorname{loss} \mathbb{E}</em>{y \sim p<em>{\text {data }}(y)}\left[|G(F(y))-y|</em>{1}\right]$</p>
-<p>我们发现它通常会导致训练不稳定，并导致模式崩溃，尤其是对于被移除的映射方向。我们也定量测了城市景观照片→标签任务上的消融，该测量结果可以在我们的论文arXiv版本中找到。</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\mathrm{GAN}+\operatorname{loss} \mathbb{E}_{x \sim p_{\text {data }}(x)}\left[\|F(G(x))-x\|_{1}\right] \\
+&\mathrm{GAN}+\operatorname{loss} \mathbb{E}_{y \sim p_{\text {data }}(y)}\left[\|G(F(y))-y\|_{1}\right]
+\end{aligned}</script><p>我们发现它通常会导致训练不稳定，并导致模式崩溃，尤其是对于被移除的映射方向。我们也定量测了城市景观照片→标签任务上的消融，该测量结果可以在我们的论文arXiv版本中找到。</p>
 <p><img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/9.png" alt="" title="在城市景观上训练的标签↔图片映射方法的不同变体。从左至右：输入，单独的循环一致性损失，单独的对抗损失，GAN+前向循环一致性损失，GAN+后向循环一致性损失，CycleGAN（本方法）和真实图像。单独的循环一致性损失和GAN+后向循环一致性损失不能产生与目标域相似的图像。单独的对抗损失和GAN+前向循环一致性损失出现模式崩溃。无论输入图片是什么都能产生完全相同的标签映射"></p>
 <h2 id="6-2-应用"><a href="#6-2-应用" class="headerlink" title="6.2 应用"></a>6.2 应用</h2><p>我们在不存在成对训练数据情况下演示了我们的方法的几种应用，我们观察到在训练数据上的转换比在测试数据上通常更有吸引力。应用在所有训练数据和测试数据的完整结果可以在我们项目的网站上看到。</p>
 <p>这个模型被训练用来将Imagenet上的一类物品转换到另一类（每一类包含大约1000张训练图像）。Turmukhambetov提出了一个子空间模型来将一个物品转换到另一个相同类别的物品，但是我们的方法致力于两个视觉上相似但类别不同的物品之间的变形。</p>
