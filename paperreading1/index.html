@@ -366,7 +366,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-07-16
+                    2022-03-30
                 </div>
                 
 
@@ -408,8 +408,10 @@
                 <blockquote>
 <p>论文原文 <a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/8237506">https://ieeexplore.ieee.org/document/8237506</a><br>arxiv版本 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1703.10593.pdf">https://arxiv.org/pdf/1703.10593.pdf</a></p>
 </blockquote>
-<center><strong>使用循环一致的对抗网络进行未配对图像到图像的转换</strong></center>
+<hr>
+<div align="center"><strong><font size="5">使用循环一致的对抗网络进行未配对图像到图像的转换</font></strong></div>
 
+<hr>
 <p><img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/cover.png" alt="" title="给定任意两个无序的图像集X和Y，我们的算法学习自动将一张图片从一种风格转换到另一种风格，反之亦然。示例应用（底部）：使用一位著名艺术家的画集，学习到将用户的照片以这样的风格展示出来"></p>
 <h1 id="1-摘要"><a href="#1-摘要" class="headerlink" title="1 摘要"></a>1 摘要</h1><p>图像到图像的转换是一类关于视觉和图像的问题，这类问题的目的是通过使用成对的图片作为训练集，学习到输入图像和输出图像的映射关系。然而，对于很多任务来说，成对的训练数据是无法得到的。我们提出了一种在没有成对的数据的情况下学习将图像从源域X转换到目标域Y的方法。我们的目标是通过使用一种对抗损失函数学习一种映射G:X→Y，使得判别器无法分辨出图像G(X)和图像Y。由于该映射受到巨大的限制，因此我们为映射G搭配一个相反的映射F:Y→X，同时加入一个循环一致性损失函数来确保F(G(X)) ≈ X（反之亦然）。在不存在成对训练数据的情况下，我们比较了风格迁移、物品变形、季节转换、照片增强等几个任务的定性结果，都证明了我们的方法较之前几种方法的优越性。</p>
 <h1 id="2-介绍"><a href="#2-介绍" class="headerlink" title="2 介绍"></a>2 介绍</h1><p>在1873年某一个晴朗的春日，当Claude Monet把他的绘画架放置在Argenteuil附近的塞纳河畔，他看到了什么？如果彩色照片在当时就已被发明的话，或许就能记录下这清澈的河流以及倒映在河流里的蓝天，Monet通过他纤细的画笔和明亮的调色板将这一场景给传达出来了。如果Monet画画的事情发生在 Cassis 小港口的一个凉爽的夏夜，那么会发生什么？漫步在一个挂满Monet画作的画廊里，我们可以轻易地想象到他会在画作中怎样描绘这些场景：或许是在淡雅的夜色中添上令人惊艳的一笔，或是变化平缓的光影范围。</p>
@@ -476,7 +478,7 @@ G^{*}, F^{*}=\arg \min _{G, F} \max _{D_{x}, D_{Y}} \mathcal{L}\left(G, F, D_{X}
 <p><img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/4.png" alt="" title="不同方法在城市景观数据上训练的标记→照片的映射，从左至右：输入, BiGAN/ALI, CoGAN, CycleGAN(本方法),在成对数据上训练的pix2pix，以及真实图片"></p>
 <h1 id="6-结果"><a href="#6-结果" class="headerlink" title="6 结果"></a>6 结果</h1><p>我们首先将我们的方法与最近的关于使用成对数据集完成未配对的图像到图像的转换方法做比较，输入输出对可用于评估。然后我们研究了对抗损失和循环一致性损失的重要性，并将我们的方法与方法的几种变体进行比较。最后，在不存在成对数据情况下，我们在更大的应用范围内证明了算法的通用性。为了简洁，我们将我们的方法称为CycleGAN。</p>
 <h2 id="6-1-评估"><a href="#6-1-评估" class="headerlink" title="6.1 评估"></a>6.1 评估</h2><p>我们使用与“pix2pix”相同的评估数据集，并且将我们的方法与几个基线（baseline）进行定量与定性的比较。我们也对全损失函数进行了消融研究。</p>
-<h2 id="6-1-2-Baseline"><a href="#6-1-2-Baseline" class="headerlink" title="6.1.2 Baseline"></a>6.1.2 Baseline</h2><p><strong>CoGAN</strong> 这个方法学习到一个生成X域数据和Y域数据的GAN生成器，前几层进行权重绑定，并共享对数据的潜在表达。通过找到一个生成图像X的潜在表达，然后将这个潜在表达以Y域风格呈现，可以实现从X到Y的风格转换。</p>
+<h3 id="6-1-1-Baseline"><a href="#6-1-1-Baseline" class="headerlink" title="6.1.1 Baseline"></a>6.1.1 Baseline</h3><p><strong>CoGAN</strong> 这个方法学习到一个生成X域数据和Y域数据的GAN生成器，前几层进行权重绑定，并共享对数据的潜在表达。通过找到一个生成图像X的潜在表达，然后将这个潜在表达以Y域风格呈现，可以实现从X到Y的风格转换。</p>
 <p><strong>Pixel loss+GAN</strong> 就像我们的方法一样，Shrivastava用一个对抗损失来训练X到Y的转换，正则项‖X−Y‖1用来纠正像素层级上过大的变动。</p>
 <p><strong>Feature loss+GAN</strong> 我们也测试了，使用预训练网络（VGG-16，relu4_2）在图像深度特征上计算L1损失，而不是在RGB像素值上计算。</p>
 <p><img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/6.png" alt="" title="在地图↔航拍图片测试的AMT“real vs fake” "></p>
@@ -763,9 +765,72 @@ G^{*}, F^{*}=\arg \min _{G, F} \max _{D_{x}, D_{Y}} \mathcal{L}\left(G, F, D_{X}
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="../paperreading2/">
+                    <div class="card-image">
+                        
+                        <img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/202204102008820.jpg" class="responsive-img" alt="paperreading-cyclegan">
+                        
+                        <span class="card-title">paperreading-cyclegan</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-04-10
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="../categories/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" class="post-category">
+                                    文献阅读
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="../tags/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/">
+                        <span class="chip bg-color">风格迁移</span>
+                    </a>
+                    
+                    <a href="../tags/cyclegan/">
+                        <span class="chip bg-color">cyclegan</span>
+                    </a>
+                    
+                    <a href="../tags/image-to-image-translation/">
+                        <span class="chip bg-color">image-to-image translation</span>
+                    </a>
+                    
+                    <a href="../tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
+                        <span class="chip bg-color">图像处理</span>
+                    </a>
+                    
+                    <a href="../tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
+                        <span class="chip bg-color">深度学习</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                本篇&nbsp;<i class="far fa-dot-circle"></i>
             </div>
             <div class="card">
                 <a href="">
@@ -784,7 +849,7 @@ G^{*}, F^{*}=\arg \min _{G, F} \max _{D_{x}, D_{Y}} \mathcal{L}\left(G, F, D_{X}
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-16
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-30
                             </span>
                         <span class="publish-author">
                             
@@ -818,42 +883,6 @@ G^{*}, F^{*}=\arg \min _{G, F} \max _{D_{x}, D_{Y}} \mathcal{L}\left(G, F, D_{X}
                         <span class="chip bg-color">风格迁移</span>
                     </a>
                     
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="../blog1st/">
-                    <div class="card-image">
-                        
-                        <img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/yunhu.jpg" class="responsive-img" alt="blog1st">
-                        
-                        <span class="card-title">blog1st</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            本篇文章用于测试网站的功能，文章显示页面的样式！
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-15
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            Wei Hu
-                            
-                        </span>
-                    </div>
                 </div>
                 
             </div>
