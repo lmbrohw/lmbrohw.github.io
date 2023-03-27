@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="论文翻译1-CycleGAN, null">
+    <meta name="keywords" content="论文翻译｜CycleGAN, null">
     <meta name="description" content="想起了就记一点">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>论文翻译1-CycleGAN | HWblog</title>
+    <title>论文翻译｜CycleGAN | HWblog</title>
     <link rel="icon" type="image/png" href="../icon.png">
 
     <link rel="stylesheet" type="text/css" href="../libs/awesome/css/all.css">
@@ -213,7 +213,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">论文翻译1-CycleGAN</h1>
+                    <h1 class="description center-align post-title">论文翻译｜CycleGAN</h1>
                 </div>
             </div>
         </div>
@@ -329,6 +329,10 @@
                     
                     <div class="article-tag">
                         
+                            <a href="../tags/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/">
+                                <span class="chip bg-color">风格迁移</span>
+                            </a>
+                        
                             <a href="../tags/CycleGAN/">
                                 <span class="chip bg-color">CycleGAN</span>
                             </a>
@@ -339,10 +343,6 @@
                         
                             <a href="../tags/%E6%97%A0%E7%9B%91%E7%9D%A3/">
                                 <span class="chip bg-color">无监督</span>
-                            </a>
-                        
-                            <a href="../tags/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/">
-                                <span class="chip bg-color">风格迁移</span>
                             </a>
                         
                     </div>
@@ -509,7 +509,7 @@ G^{*}, F^{*}=\arg \min _{G, F} \max _{D_{x}, D_{Y}} \mathcal{L}\left(G, F, D_{X}
 <p><img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/11.png" alt="" title="我们将输入的图像转换成不同的艺术风格，请访问我们的网站获取更多示例"></p>
 <p>在图9，我们展示了将Monet画作转换为照片的结果，这些图片显示了被包括在训练集中的画作的转换结果，而本文中的其他实验，我们仅仅评估和展示测试集结果。因为训练集不包括成对数据，所以为训练集提供看似合理的转换结果是一项重要的任务。确实，自从Monet不再创作新的画作时，泛化看不到“测试集”的原画作不是一个迫切的问题。</p>
 <p>我们展示了我们的方法可以被用来生成景深较浅的图片上。我们在从Flickr下载的花朵照片上训练这个模型。源域由智能手机拍摄的花朵的照片组成，这些照片由于拍摄光圈小通常具有很深的景深。目标照片由具有大光圈的单反相机拍摄得到。我们的模型成功地将智能手机拍摄的照片生成为具有较浅景深的图片。</p>
-<p><img src="12.png" alt="" title="Monet画作映射成照片风格的结果，请访问我们的网站获取更多示例"></p>
+<p><img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/12.png" alt="" title="Monet画作映射成照片风格的结果，请访问我们的网站获取更多示例"></p>
 <h1 id="7-局限与讨论"><a href="#7-局限与讨论" class="headerlink" title="7 局限与讨论"></a>7 局限与讨论</h1><p>虽然我们的方法在许多情况下可以取得令人信服的结果，但这些结果并不会一直都这样好。图12中展示了几个典型的失败案例，在涉及颜色和纹理变形的任务上，与上面报告中提到的许多任务一样，我们的方法通常能够成功。我们也探索了要求几何变换的任务，但是收效甚微。例如，在猫→狗转换任务中，对风格转换的学习退化为对输入图像进行最小程度的改变。处理更多和更极端的变换，特别是几何变换，这是未来工作的重点问题。</p>
 <p><img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/13.png" alt="" title="照片增强：从一组iPhone照片映射到专业的DSLR照片，系统通常会学习生成短焦点。这里我们展示了测试集中最成功的一些结果——平均性能表现要比这个差得多。请查看我们的网站来了解更全面和随机的示例"></p>
 <p><img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/14.png" alt="" title="将我们的方法与neural style transfer进行了比较。从左至右：输入图像，使用单个代表性图像作为风格图像的结果，使用目标域所有图像的结果，以及CycleGAN"></p>
@@ -582,6 +582,10 @@ G^{*}, F^{*}=\arg \min _{G, F} \max _{D_{x}, D_{Y}} \mathcal{L}\left(G, F, D_{X}
                     
                         <div class="article-tag">
                             
+                                <a href="../tags/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/">
+                                    <span class="chip bg-color">风格迁移</span>
+                                </a>
+                            
                                 <a href="../tags/CycleGAN/">
                                     <span class="chip bg-color">CycleGAN</span>
                                 </a>
@@ -592,10 +596,6 @@ G^{*}, F^{*}=\arg \min _{G, F} \max _{D_{x}, D_{Y}} \mathcal{L}\left(G, F, D_{X}
                             
                                 <a href="../tags/%E6%97%A0%E7%9B%91%E7%9D%A3/">
                                     <span class="chip bg-color">无监督</span>
-                                </a>
-                            
-                                <a href="../tags/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/">
-                                    <span class="chip bg-color">风格迁移</span>
                                 </a>
                             
                         </div>
@@ -772,9 +772,9 @@ G^{*}, F^{*}=\arg \min _{G, F} \max _{D_{x}, D_{Y}} \mathcal{L}\left(G, F, D_{X}
                 <a href="../paperreading2/">
                     <div class="card-image">
                         
-                        <img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/202204102008820.jpg" class="responsive-img" alt="paperreading-cyclegan">
+                        <img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/202204102008820.jpg" class="responsive-img" alt="论文阅读｜CycleGAN">
                         
-                        <span class="card-title">paperreading-cyclegan</span>
+                        <span class="card-title">论文阅读｜CycleGAN</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -802,12 +802,12 @@ G^{*}, F^{*}=\arg \min _{G, F} \max _{D_{x}, D_{Y}} \mathcal{L}\left(G, F, D_{X}
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../tags/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/">
-                        <span class="chip bg-color">风格迁移</span>
-                    </a>
-                    
                     <a href="../tags/cyclegan/">
                         <span class="chip bg-color">cyclegan</span>
+                    </a>
+                    
+                    <a href="../tags/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/">
+                        <span class="chip bg-color">风格迁移</span>
                     </a>
                     
                     <a href="../tags/image-to-image-translation/">
@@ -836,9 +836,9 @@ G^{*}, F^{*}=\arg \min _{G, F} \max _{D_{x}, D_{Y}} \mathcal{L}\left(G, F, D_{X}
                 <a href="">
                     <div class="card-image">
                         
-                        <img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/cover.png" class="responsive-img" alt="论文翻译1-CycleGAN">
+                        <img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/cover.png" class="responsive-img" alt="论文翻译｜CycleGAN">
                         
-                        <span class="card-title">论文翻译1-CycleGAN</span>
+                        <span class="card-title">论文翻译｜CycleGAN</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -867,6 +867,10 @@ G^{*}, F^{*}=\arg \min _{G, F} \max _{D_{x}, D_{Y}} \mathcal{L}\left(G, F, D_{X}
                 
                 <div class="card-action article-tags">
                     
+                    <a href="../tags/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/">
+                        <span class="chip bg-color">风格迁移</span>
+                    </a>
+                    
                     <a href="../tags/CycleGAN/">
                         <span class="chip bg-color">CycleGAN</span>
                     </a>
@@ -877,10 +881,6 @@ G^{*}, F^{*}=\arg \min _{G, F} \max _{D_{x}, D_{Y}} \mathcal{L}\left(G, F, D_{X}
                     
                     <a href="../tags/%E6%97%A0%E7%9B%91%E7%9D%A3/">
                         <span class="chip bg-color">无监督</span>
-                    </a>
-                    
-                    <a href="../tags/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/">
-                        <span class="chip bg-color">风格迁移</span>
                     </a>
                     
                 </div>
@@ -1072,7 +1072,7 @@ G^{*}, F^{*}=\arg \min _{G, F} \max _{D_{x}, D_{Y}} \mathcal{L}\left(G, F, D_{X}
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2021-2022</span>
+                <span id="year">2021-2023</span>
             
             <a href="../about" target="_blank">Wei Hu</a>
             <br>
