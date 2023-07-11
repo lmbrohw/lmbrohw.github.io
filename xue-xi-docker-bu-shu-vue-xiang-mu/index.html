@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="TCP 重传、滑动窗口、流量控制、拥塞控制, null">
+    <meta name="keywords" content="学习｜Docker部署Vue项目, null">
     <meta name="description" content="想起了就记一点">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>TCP 重传、滑动窗口、流量控制、拥塞控制 | HWblog</title>
+    <title>学习｜Docker部署Vue项目 | HWblog</title>
     <link rel="icon" type="image/png" href="../icon.png">
 
     <link rel="stylesheet" type="text/css" href="../libs/awesome/css/all.css">
@@ -208,12 +208,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../medias/featureimages/15.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">TCP 重传、滑动窗口、流量控制、拥塞控制</h1>
+                    <h1 class="description center-align post-title">学习｜Docker部署Vue项目</h1>
                 </div>
             </div>
         </div>
@@ -329,20 +329,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="../tags/tcp/">
-                                <span class="chip bg-color">tcp</span>
+                            <a href="../tags/docker/">
+                                <span class="chip bg-color">docker</span>
                             </a>
                         
-                            <a href="../tags/%E9%9D%A2%E7%BB%8F/">
-                                <span class="chip bg-color">面经</span>
-                            </a>
-                        
-                            <a href="../tags/%E7%BD%91%E7%BB%9C/">
-                                <span class="chip bg-color">网络</span>
-                            </a>
-                        
-                            <a href="../tags/%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93/">
-                                <span class="chip bg-color">可靠传输</span>
+                            <a href="../tags/vue/">
+                                <span class="chip bg-color">vue</span>
                             </a>
                         
                     </div>
@@ -353,8 +345,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="../categories/%E9%9D%A2%E7%BB%8F/" class="post-category">
-                                面经
+                            <a href="../categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                学习
                             </a>
                         
                     </div>
@@ -366,7 +358,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-06-20
+                    2023-05-09
                 </div>
                 
 
@@ -375,7 +367,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    753
+                    651
                 </div>
                 
 
@@ -405,49 +397,74 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <blockquote>
-<p>此文内容全部基于<a target="_blank" rel="noopener" href="https://xiaolincoding.com/network/">小林Coding图解网络系列</a>，将此记录在博客中也是为了方便自己查阅和复习，如有任何侵权等问题，联系我立即删除！</p>
-</blockquote>
-<hr>
-<div align="center"><strong><font size="5">TCP 重传、滑动窗口、流量控制、拥塞控制</font></strong></div>
+                <hr>
+<div align="center"><strong><font size="5">Docker部署Vue项目</font></strong></div>
 
 <hr>
-<h1 id="TCP-重传、滑动窗口、流量控制、拥塞控制"><a href="#TCP-重传、滑动窗口、流量控制、拥塞控制" class="headerlink" title="TCP 重传、滑动窗口、流量控制、拥塞控制"></a>TCP 重传、滑动窗口、流量控制、拥塞控制</h1><p><img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/tcp9.png" alt=""></p>
-<h1 id="重传机制"><a href="#重传机制" class="headerlink" title="重传机制"></a>重传机制</h1><ul>
-<li>超时重传</li>
-<li>快速重传</li>
-<li>SACK</li>
-<li>D-SACK</li>
-</ul>
-<h2 id="超时重传"><a href="#超时重传" class="headerlink" title="超时重传"></a>超时重传</h2><blockquote>
-<p>RTT：往返时延—————-指的是<strong>数据发送时刻到接收到确认的时刻的差值</strong></p>
-<p>RT0：超时重传时间</p>
+<h1 id="构建vue项目"><a href="#构建vue项目" class="headerlink" title="构建vue项目"></a>构建vue项目</h1><p>运行命令</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">yarn</span> build / <span class="token function">npm</span> run build<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>vue工程根目录中生成一个 dist 目录，如果将该dist目录整个传到服务器上，部署成静态资源站点就能直接访问到该项目。</p>
+<h1 id="构建vue应用镜像"><a href="#构建vue应用镜像" class="headerlink" title="构建vue应用镜像"></a>构建vue应用镜像</h1><p>这里我们使用nginx镜像作为基础进行构建，具体步骤如下：</p>
+<h2 id="获取nginx镜像"><a href="#获取nginx镜像" class="headerlink" title="获取nginx镜像"></a>获取nginx镜像</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> pull nginx<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<blockquote>
+<ol>
+<li><code>docker</code>镜像（Image）一个特殊的文件系统。Docker镜像是一个特殊的文件系统，除了提供容器运行时所需的程序、库、资源、配置等文件外，还包含了一些为运行时准备的一些配置参数（如匿名卷、环境变量、用户等）。 镜像不包含任何动态数据，其内容在构建之后也不会被改变。</li>
+<li>docker 镜像相关操作有: 搜索镜像<code>docker search [REPOSITORY[:TAG]]</code>、拉取镜像<code>docker pull [REPOSITORY[:TAG]]</code> 、查看镜像列表<code>docker image ls</code>、删除镜像：<code>docker image rm [REPOSITORY[:TAG]] / docker rmi [REPOSITORY[:TAG]]</code> 等等。</li>
+<li>docker 镜像名称由REPOSITORY和TAG组成 <code>[REPOSITORY[:TAG]]</code>，TAG默认为latest</li>
+</ol>
 </blockquote>
-<p><code>RT0应该略大于RTT</code>，当时间超过RT0还没有收到ACK，则重传报文。</p>
-<h2 id="快速重传"><a href="#快速重传" class="headerlink" title="快速重传"></a>快速重传</h2><p><img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/%E6%88%AA%E5%B1%8F2023-06-07%2015.21.18.png" alt=""></p>
-<h2 id="选择性确认SACK"><a href="#选择性确认SACK" class="headerlink" title="选择性确认SACK"></a>选择性确认SACK</h2><blockquote>
-<p>这种方式需要在 TCP 头部「选项」字段里加一个 <code>SACK</code> 的东西，它<strong>可以将已收到的数据的信息发送给「发送方」</strong>，这样发送方就可以知道哪些数据收到了，哪些数据没收到，知道了这些信息，就可以<strong>只重传丢失的数据</strong>。</p>
+<h2 id="创建-nginx-config配置文件"><a href="#创建-nginx-config配置文件" class="headerlink" title="创建 nginx config配置文件"></a><strong>创建 nginx config配置文件</strong></h2><p>在项目根目录下创建<code>nginx</code>文件夹，该文件夹下新建文件<code>default.conf</code></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">server <span class="token punctuation">{</span>
+    listen       <span class="token number">8091</span><span class="token punctuation">;</span>
+    server_name  localhost<span class="token punctuation">;</span>
+
+    <span class="token comment">#charset koi8-r;</span>
+    access_log  /var/log/nginx/host.access.log  main<span class="token punctuation">;</span>
+    error_log  /var/log/nginx/error.log  error<span class="token punctuation">;</span>
+
+    location / <span class="token punctuation">{</span>
+        root   /usr/share/nginx/html<span class="token punctuation">;</span>
+        index  index.html index.htm<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">#error_page  404              /404.html;</span>
+
+    <span class="token comment"># redirect server error pages to the static page /50x.html</span>
+    <span class="token comment">#</span>
+    error_page   <span class="token number">500</span> <span class="token number">502</span> <span class="token number">503</span> <span class="token number">504</span>  /50x.html<span class="token punctuation">;</span>
+    location <span class="token operator">=</span> /50x.html <span class="token punctuation">{</span>
+        root   /usr/share/nginx/html<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>把dist目录下的index.html文件和相关的静态资源放到<code>/usr/share/nginx/html</code>目录下</p>
+<h2 id="创建Dockerfile文件"><a href="#创建Dockerfile文件" class="headerlink" title="创建Dockerfile文件"></a>创建Dockerfile文件</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">FROM nginx
+COPY dist/ /usr/share/nginx/html/
+COPY nginx/default.conf /etc/nginx/conf.d/default.conf<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>这段命令的详细含义是：</p>
+<blockquote>
+<ol>
+<li><code>FROM nginx</code> 命令的意思该镜像是基于 nginx:latest 镜像而构建的。</li>
+<li><code>COPY dist/ /usr/share/nginx/html/</code> 命令的意思是将项目根目录下dist文件夹下的所有文件复制到镜像中 /usr/share/nginx/html/ 目录下。</li>
+<li><code>COPY nginx/default.conf /etc/nginx/conf.d/default.conf</code> 命令的意思是将nginx目录下的default.conf 复制到 etc/nginx/conf.d/default.conf，用本地的 default.conf 配置来替换nginx镜像里的默认配置。</li>
+</ol>
 </blockquote>
-<h2 id="Duplicate-SACK"><a href="#Duplicate-SACK" class="headerlink" title="Duplicate SACK"></a>Duplicate SACK</h2><blockquote>
-<p>Duplicate SACK 又称 <code>D-SACK</code>，其主要<strong>使用了 SACK 来告诉「发送方」有哪些数据被重复接收了。</strong></p>
-<ul>
-<li>「接收方」发给「发送方」的两个 ACK 确认应答都丢失了，所以发送方超时后，重传第一个数据包（3000 ~ 3499）</li>
-<li><strong>于是「接收方」发现数据是重复收到的，于是回了一个 SACK = 3000~3500</strong>，告诉「发送方」 3000~3500 的数据早已被接收了，因为 ACK 都到了 4000 了，已经意味着 4000 之前的所有数据都已收到，所以这个 SACK 就代表着 <code>D-SACK</code>。</li>
-<li>这样「发送方」就知道了，数据没有丢，是「接收方」的 ACK 确认报文丢了。</li>
-</ul>
+<h2 id="基于该Dockerfile构建vue应用镜像"><a href="#基于该Dockerfile构建vue应用镜像" class="headerlink" title="基于该Dockerfile构建vue应用镜像"></a><strong>基于该Dockerfile构建vue应用镜像</strong></h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> build -t vueContainer <span class="token builtin class-name">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<blockquote>
+<p><code>-t</code> 是给镜像命名 <code>.</code> 是基于当前目录的Dockerfile来构建镜像</p>
 </blockquote>
-<h1 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h1><blockquote>
-<p>累计确认、累计应答</p>
-<p>接收窗口的大小是<strong>约等于</strong>发送窗口的大小的。</p>
+<h2 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> run <span class="token punctuation">\</span>
+-p <span class="token number">8091</span>:8091 <span class="token punctuation">\</span>
+-d --name vueApp <span class="token punctuation">\</span>
+vueContainer<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<ol>
+<li><code>docker run</code> 基于镜像启动一个容器</li>
+<li><code>p 3000:80</code> 端口映射，将宿主的3000端口映射到容器的80端口</li>
+<li><code>d</code> 后台方式运行</li>
+<li><code>-name</code> 容器名 查看 docker 进程</li>
+</ol>
 </blockquote>
-<p>因为滑动窗口并不是一成不变的。比如，当接收方的应用进程读取数据的速度非常快的话，这样的话接收窗口可以很快的就空缺出来。那么新的接收窗口大小，是通过 TCP 报文中的 Windows 字段来告诉发送方。那么这个传输过程是存在时延的，所以接收窗口和发送窗口是约等于的关系</p>
-<h1 id="流量控制"><a href="#流量控制" class="headerlink" title="流量控制"></a>流量控制</h1><h2 id="1-停止-等待流量控制"><a href="#1-停止-等待流量控制" class="headerlink" title="1.停止-等待流量控制"></a>1.停止-等待流量控制</h2><p>发送一帧，等待应答信号再发送下一帧，如果没有接收到回答，则一直等待，没有计时器。</p>
-<h2 id="2-滑动窗口流量控制"><a href="#2-滑动窗口流量控制" class="headerlink" title="2.滑动窗口流量控制"></a>2.滑动窗口流量控制</h2><p>允许一次发送多个帧，每收到一个帧的确认，发送窗口就向前滑动一个帧的位置。</p>
-<h1 id="拥塞控制"><a href="#拥塞控制" class="headerlink" title="拥塞控制"></a>拥塞控制</h1><blockquote>
-<p>拥塞窗口：<strong>拥塞窗口 cwnd</strong>是发送方维护的一个的状态变量，它会根据<strong>网络的拥塞程度动态变化的</strong>。，发送窗口的值是swnd = min(cwnd, rwnd)，也就是拥塞窗口和接收窗口中的最小值。</p>
-<p>慢启动门限 <code>ssthresh</code> ：cwnd超过慢启动门限后，则开始拥塞避免算法</p>
-</blockquote>
-<p><img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/%E6%88%AA%E5%B1%8F2023-06-10%2010.27.40.png" alt=""></p>
+<p>此时访问 <a target="_blank" rel="noopener" href="http://localhost:8091">http://localhost:8091</a> 就能访问到该vue应用</p>
 
                 
             </div>
@@ -512,20 +529,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="../tags/tcp/">
-                                    <span class="chip bg-color">tcp</span>
+                                <a href="../tags/docker/">
+                                    <span class="chip bg-color">docker</span>
                                 </a>
                             
-                                <a href="../tags/%E9%9D%A2%E7%BB%8F/">
-                                    <span class="chip bg-color">面经</span>
-                                </a>
-                            
-                                <a href="../tags/%E7%BD%91%E7%BB%9C/">
-                                    <span class="chip bg-color">网络</span>
-                                </a>
-                            
-                                <a href="../tags/%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93/">
-                                    <span class="chip bg-color">可靠传输</span>
+                                <a href="../tags/vue/">
+                                    <span class="chip bg-color">vue</span>
                                 </a>
                             
                         </div>
@@ -695,18 +704,17 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="">
+                <a href="../xue-xi-linux-ming-ling/">
                     <div class="card-image">
                         
                         
-                        <img src="../medias/featureimages/13.jpg" class="responsive-img" alt="TCP 重传、滑动窗口、流量控制、拥塞控制">
+                        <img src="../medias/featureimages/23.jpg" class="responsive-img" alt="学习｜Linux命令">
                         
-                        <span class="card-title">TCP 重传、滑动窗口、流量控制、拥塞控制</span>
+                        <span class="card-title">学习｜Linux命令</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -716,39 +724,34 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-06-20
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-05-11
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="../categories/%E9%9D%A2%E7%BB%8F/" class="post-category">
-                                    面经
+                            <a href="../categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    学习
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
-                    
-                    <a href="../tags/tcp/">
-                        <span class="chip bg-color">tcp</span>
-                    </a>
                     
                     <a href="../tags/%E9%9D%A2%E7%BB%8F/">
                         <span class="chip bg-color">面经</span>
                     </a>
                     
-                    <a href="../tags/%E7%BD%91%E7%BB%9C/">
-                        <span class="chip bg-color">网络</span>
+                    <a href="../tags/Linux/">
+                        <span class="chip bg-color">Linux</span>
                     </a>
                     
-                    <a href="../tags/%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93/">
-                        <span class="chip bg-color">可靠传输</span>
+                    <a href="../tags/%E5%91%BD%E4%BB%A4/">
+                        <span class="chip bg-color">命令</span>
                     </a>
                     
                 </div>
@@ -762,13 +765,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="../tcp/">
+                <a href="../xue-xi-docker-bu-shu-springboot/">
                     <div class="card-image">
                         
                         
-                        <img src="../medias/featureimages/7.jpg" class="responsive-img" alt="TCP建立连接">
+                        <img src="../medias/featureimages/5.jpg" class="responsive-img" alt="学习｜Docker部署SpringBoot">
                         
-                        <span class="card-title">TCP建立连接</span>
+                        <span class="card-title">学习｜Docker部署SpringBoot</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -779,14 +782,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-06-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-05-08
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="../categories/%E9%9D%A2%E7%BB%8F/" class="post-category">
-                                    面经
+                            <a href="../categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    学习
                                 </a>
                             
                             
@@ -796,16 +799,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../tags/tcp/">
-                        <span class="chip bg-color">tcp</span>
+                    <a href="../tags/docker/">
+                        <span class="chip bg-color">docker</span>
                     </a>
                     
-                    <a href="../tags/%E9%9D%A2%E7%BB%8F/">
-                        <span class="chip bg-color">面经</span>
-                    </a>
-                    
-                    <a href="../tags/%E7%BD%91%E7%BB%9C/">
-                        <span class="chip bg-color">网络</span>
+                    <a href="../tags/springboot/">
+                        <span class="chip bg-color">springboot</span>
                     </a>
                     
                 </div>
