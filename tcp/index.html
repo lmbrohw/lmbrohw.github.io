@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="PyTorch学习｜动态计算图与线性回归, null">
+    <meta name="keywords" content="tcp, null">
     <meta name="description" content="想起了就记一点">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>PyTorch学习｜动态计算图与线性回归 | HWblog</title>
+    <title>tcp | HWblog</title>
     <link rel="icon" type="image/png" href="../icon.png">
 
     <link rel="stylesheet" type="text/css" href="../libs/awesome/css/all.css">
@@ -208,12 +208,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">PyTorch学习｜动态计算图与线性回归</h1>
+                    <h1 class="description center-align post-title">tcp</h1>
                 </div>
             </div>
         </div>
@@ -329,12 +329,16 @@
                     
                     <div class="article-tag">
                         
-                            <a href="../tags/PyTorch/">
-                                <span class="chip bg-color">PyTorch</span>
+                            <a href="../tags/tcp/">
+                                <span class="chip bg-color">tcp</span>
                             </a>
                         
-                            <a href="../tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
-                                <span class="chip bg-color">机器学习</span>
+                            <a href="../tags/%E9%9D%A2%E7%BB%8F/">
+                                <span class="chip bg-color">面经</span>
+                            </a>
+                        
+                            <a href="../tags/%E7%BD%91%E7%BB%9C/">
+                                <span class="chip bg-color">网络</span>
                             </a>
                         
                     </div>
@@ -345,8 +349,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="../categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
-                                学习
+                            <a href="../categories/%E9%9D%A2%E7%BB%8F/" class="post-category">
+                                面经
                             </a>
                         
                     </div>
@@ -358,7 +362,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-04-01
+                    2023-07-11
                 </div>
                 
 
@@ -367,7 +371,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    1.4k
                 </div>
                 
 
@@ -397,107 +401,62 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>参考</p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/265394674">PyTorch 学习笔记汇总</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_28731575/article/details/90342082">pytorch中backward()函数详解</a></p>
+                <blockquote>
+<p>此文内容全部基于<a target="_blank" rel="noopener" href="https://xiaolincoding.com/network/">小林Coding图解网络系列</a>，将此记录在博客中也是为了方便自己查阅和复习，如有任何侵权等问题，联系我立即删除！</p>
 </blockquote>
 <hr>
-<div align="center"><strong><font size="5">PyTorch学习｜动态计算图与线性回归</font></strong></div>
+<div align="center"><strong><font size="5">TCP相关</font></strong></div>
 
 <hr>
-<h1 id="动态图"><a href="#动态图" class="headerlink" title="动态图"></a>动态图</h1><p>PyTorch 采用的是动态图机制（Dynamic Computational Graph），而 Tensorflow 采用的是静态图机制。（Static Computational Graph）</p>
-<p>动态图运算和搭建同时进行，也就是可以先计算前面的节点值，再根据这些值搭建后面的计算图。而静态图需要先搭建图，然后再输入数据进行运算。</p>
-<p>PyTorch 动态图的优点是灵活，易调节，且使用简单方便。（类似 Python 库）但是其效率相对 Tensorflow 的静态图要低不少。</p>
-<h2 id="计算动态图"><a href="#计算动态图" class="headerlink" title="计算动态图"></a>计算动态图</h2><p>计算图是用来描述运算的有向无环图，有两个主要元素：节点 （Node） 和边 （Edge）。节点表示数据，如向量、矩阵、张量。边表示运算，如加减乘除卷积等。</p>
-<p>一个简单的例子$y=(m+n)(m-n)$ ，该式子用计算图表示为：</p>
-<p><img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/dynamicPic.png" alt=""></p>
-<h2 id="求导"><a href="#求导" class="headerlink" title="求导"></a>求导</h2><p>对于上式，分别求y在$m=2,n=3$时，关于$m,n$导数：</p>
-<script type="math/tex; mode=display">
-\begin{equation}\frac{\partial y}{\partial m}=\frac{\partial\left(m^2-n^2\right)}{\partial m}=2 m=4\end{equation}</script><p>同理：</p>
-<script type="math/tex; mode=display">
-\begin{equation}\frac{\partial y}{\partial n}=\frac{\partial\left(m^2-n^2\right)}{\partial n}=-2 n=-6\end{equation}</script><p>PyTorch中，<code>torch.backward()</code>会提供求导的功能，代码如下（注意，当计算图中的根不是标量时，即因变量为一个向量时，会构建出多个计算图对该向量中的每个元素分别进行求导，详见 <a target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_28731575/article/details/90342082">pytorch中backward()函数详解</a> ）：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> torch
-m <span class="token operator">=</span> torch<span class="token punctuation">.</span>tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2.</span><span class="token punctuation">]</span><span class="token punctuation">,</span> requires_grad<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
-n <span class="token operator">=</span> torch<span class="token punctuation">.</span>tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">3.</span><span class="token punctuation">]</span><span class="token punctuation">,</span> requires_grad<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
-
-a <span class="token operator">=</span> torch<span class="token punctuation">.</span>add<span class="token punctuation">(</span>m<span class="token punctuation">,</span> n<span class="token punctuation">)</span>
-b <span class="token operator">=</span> torch<span class="token punctuation">.</span>add<span class="token punctuation">(</span>m<span class="token punctuation">,</span> <span class="token operator">-</span>n<span class="token punctuation">)</span>
-y <span class="token operator">=</span> torch<span class="token punctuation">.</span>mul<span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span>
-
-y<span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'m的梯度：'</span><span class="token punctuation">,</span> m<span class="token punctuation">.</span>grad<span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'n的梯度'</span><span class="token punctuation">,</span> n<span class="token punctuation">.</span>grad<span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'m is_leaf：'</span><span class="token punctuation">,</span> m<span class="token punctuation">.</span>is_leaf<span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'n is_leaf：'</span><span class="token punctuation">,</span> n<span class="token punctuation">.</span>is_leaf<span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'a is_leaf：'</span><span class="token punctuation">,</span> a<span class="token punctuation">.</span>is_leaf<span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'b is_leaf：'</span><span class="token punctuation">,</span> b<span class="token punctuation">.</span>is_leaf<span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'y is_leaf：'</span><span class="token punctuation">,</span> y<span class="token punctuation">.</span>is_leaf<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">m的梯度： tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">4.</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-n的梯度 tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">6.</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-m is_leaf： <span class="token boolean">True</span>
-n is_leaf： <span class="token boolean">True</span>
-a is_leaf： <span class="token boolean">False</span>
-b is_leaf： <span class="token boolean">False</span>
-y is_leaf： <span class="token boolean">False</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>并且由打印可知，可以看出$m$和$n$的 is_leaf 属性为 true，这是由于$a$、$b$、$y$ 是依赖$m$和$n$的，故$m$$n$为叶子节点。叶子节点的概念主要是为了节省内存，在计算图中的一轮反向传播结束之后，非叶子节点的梯度是会被释放的，所以直接访问非叶子节点的梯度是为空的。但是如果在反向传播结束之后仍然需要保留非叶子节点的梯度，可以对节点使用<code>retain_grad()</code>方法。</p>
-<p>张量Tensor中，属性grad_fn记录了创建该张量时使用的方法（函数），故而可以在调用<code>torch.backward()</code>时自动求导。</p>
-<h1 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h1><p>线性回归是分析一个变量y与另外一 (多) 个变量x之间的关系的方法。一般可以写成 $y=wx+b$ 线性回归的目的就是求解参数$w$，$b$。其主要步骤：</p>
-<p>① 确定模型（实际使用中，可能是一个隐函数）： $y=wx+b$；</p>
-<p>② 选择损失函数，一般使用均方误差MSE（mean square error）：$\frac{1}{m} \sum_{i=1}^m\left(y_i-\hat{y}_i\right)^2$；</p>
-<p>③ 使用梯度下降法求解梯度，并根据学习率  $lr$更新参数，以此来最小化损失函数。</p>
-<script type="math/tex; mode=display">
-\begin{equation}\left\{\begin{array}{c}w=w-l r * w . g r a d \\b=b-l r * b . g r a d\end{array}\right.\end{equation}</script><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> torch
-<span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
-torch<span class="token punctuation">.</span>manual_seed<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>
-
-lr <span class="token operator">=</span> <span class="token number">0.05</span>  <span class="token comment"># 学习率</span>
-
-<span class="token comment"># 创建训练数据</span>
-x <span class="token operator">=</span> torch<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">10</span>  <span class="token comment"># x data (tensor), shape=(20, 1)</span>
-<span class="token comment"># torch.randn(20, 1) 用于添加噪声</span>
-y <span class="token operator">=</span> <span class="token number">2</span><span class="token operator">*</span>x <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token number">5</span> <span class="token operator">+</span> torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># y data (tensor), shape=(20, 1)</span>
-
-<span class="token comment"># 构建线性回归参数</span>
-w <span class="token operator">=</span> torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> requires_grad<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span> <span class="token comment"># 设置梯度求解为 true</span>
-b <span class="token operator">=</span> torch<span class="token punctuation">.</span>zeros<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> requires_grad<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span> <span class="token comment"># 设置梯度求解为 true</span>
-
-<span class="token comment"># 迭代训练 100 次</span>
-<span class="token keyword">for</span> iteration <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-
-    <span class="token comment"># 前向传播，计算预测值</span>
-    wx <span class="token operator">=</span> torch<span class="token punctuation">.</span>mul<span class="token punctuation">(</span>w<span class="token punctuation">,</span> x<span class="token punctuation">)</span>
-    y_pred <span class="token operator">=</span> torch<span class="token punctuation">.</span>add<span class="token punctuation">(</span>wx<span class="token punctuation">,</span> b<span class="token punctuation">)</span>
-
-    <span class="token comment"># 计算 MSE loss</span>
-    loss <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">0.5</span> <span class="token operator">*</span> <span class="token punctuation">(</span>y <span class="token operator">-</span> y_pred<span class="token punctuation">)</span> <span class="token operator">**</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">.</span>mean<span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-    <span class="token comment"># 反向传播</span>
-    loss<span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-    <span class="token comment"># 更新参数</span>
-    b<span class="token punctuation">.</span>data<span class="token punctuation">.</span>sub_<span class="token punctuation">(</span>lr <span class="token operator">*</span> b<span class="token punctuation">.</span>grad<span class="token punctuation">)</span>
-    w<span class="token punctuation">.</span>data<span class="token punctuation">.</span>sub_<span class="token punctuation">(</span>lr <span class="token operator">*</span> w<span class="token punctuation">.</span>grad<span class="token punctuation">)</span>
-
-    <span class="token comment"># 每次更新参数之后，都要清零张量的梯度</span>
-    w<span class="token punctuation">.</span>grad<span class="token punctuation">.</span>zero_<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    b<span class="token punctuation">.</span>grad<span class="token punctuation">.</span>zero_<span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-    <span class="token comment"># 绘图，每隔 20 次重新绘制直线</span>
-    <span class="token keyword">if</span> iteration <span class="token operator">%</span> <span class="token number">5</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
-
-        plt<span class="token punctuation">.</span>scatter<span class="token punctuation">(</span>x<span class="token punctuation">.</span>data<span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> y<span class="token punctuation">.</span>data<span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>x<span class="token punctuation">.</span>data<span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> y_pred<span class="token punctuation">.</span>data<span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'r-'</span><span class="token punctuation">,</span> lw<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">)</span>
-        plt<span class="token punctuation">.</span>text<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token string">'Loss=%.4f'</span> <span class="token operator">%</span> loss<span class="token punctuation">.</span>data<span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> fontdict<span class="token operator">=</span><span class="token punctuation">{</span><span class="token string">'size'</span><span class="token punctuation">:</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token string">'color'</span><span class="token punctuation">:</span>  <span class="token string">'red'</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
-        plt<span class="token punctuation">.</span>xlim<span class="token punctuation">(</span><span class="token number">1.5</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span>
-        plt<span class="token punctuation">.</span>ylim<span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">28</span><span class="token punctuation">)</span>
-        plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">"Iteration: {}\nw: {} b: {}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>iteration<span class="token punctuation">,</span> w<span class="token punctuation">.</span>data<span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> b<span class="token punctuation">.</span>data<span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        plt<span class="token punctuation">.</span>pause<span class="token punctuation">(</span><span class="token number">0.5</span><span class="token punctuation">)</span>
-
-        <span class="token comment"># 如果 MSE 小于 1，则停止训练</span>
-        <span class="token keyword">if</span> loss<span class="token punctuation">.</span>data<span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">1</span><span class="token punctuation">:</span>
-            <span class="token keyword">break</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/pytorch.png" alt=""></p>
+<h1 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h1><h2 id="TCP三次握手"><a href="#TCP三次握手" class="headerlink" title="TCP三次握手"></a>TCP三次握手</h2><p><code>注意：**第三次握手是可以携带数据的，前两次握手是不可以携带数据的**</code></p>
+<p><img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/tcp0.png" alt=""></p>
+<p>Linux中查看TCP状态</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">netstat</span> -nap<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/tcp1.png" alt=""></p>
+<h2 id="为什么是三次握手"><a href="#为什么是三次握手" class="headerlink" title="为什么是三次握手"></a>为什么是三次握手</h2><h3 id="1-避免历史连接"><a href="#1-避免历史连接" class="headerlink" title="1.避免历史连接"></a>1.避免历史连接</h3><p>简单来说就是，当之前发送第一次握手信息（seq=90）后，客户端宕机了，而且这个 SYN 报文还被网络阻塞了，服务端并没有收到，接着客户端重启后，又重新向服务端建立连接，发送了 SYN（seq = 100）报文。当之前的SYN到达服务器后，会开始第二次握手ack=90+1发给客户端，但此时客户端想要的ack是101，因此发送RST给服务器断开连接。</p>
+<p><code>如果是两次握手的话，当服务器收到seq=90的时候，他就会在发送完ACK后，开始传输数据，这样就可能建立一个历史连接，造成**资源浪费**</code></p>
+<h3 id="2-同步双方初始序列号"><a href="#2-同步双方初始序列号" class="headerlink" title="2.同步双方初始序列号"></a>2.同步双方初始序列号</h3><p>在握手的时候，发送SYN报文，每一次发送了SYN后，都需要有ack=seq+1来回应，表示已经接受了该SYN报文。因此两个SYN报文就需要两个ACK报文来回应，但是因为第二次握手可以将SYN报文和ACK一起发过去，因此就是三次握手。</p>
+<h3 id="3-避免浪费资源"><a href="#3-避免浪费资源" class="headerlink" title="3.避免浪费资源"></a>3.避免浪费资源</h3><p>当服务器收到SYN报文后，发送完ACK报文，建立起一个连接，那么当服务器第二次握手发送的ACK报文如果没有被客户端收到，那么客户端就会重新发送一次SYN报文，这个时候服务器又建立起一个连接，就会浪费。如果客户端发送的 <code>SYN</code> 报文在网络中阻塞了，重复发送多次 <code>SYN</code> 报文，那么服务端在收到请求后就会<strong>建立多个冗余的无效链接，造成不必要的资源浪费。</strong></p>
+<h2 id="为什么建立新连接时序列号要不同"><a href="#为什么建立新连接时序列号要不同" class="headerlink" title="为什么建立新连接时序列号要不同"></a>为什么建立新连接时序列号要不同</h2><p>防止历史报文被新的连接接受，造成数据混乱</p>
+<p><img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/tcp2.png" alt=""></p>
+<h2 id="TCP四次挥手"><a href="#TCP四次挥手" class="headerlink" title="TCP四次挥手"></a>TCP四次挥手</h2><p><img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/tcp3.png" alt=""></p>
+<h3 id="TCP挥手一定需要四次吗？"><a href="#TCP挥手一定需要四次吗？" class="headerlink" title="TCP挥手一定需要四次吗？"></a>TCP挥手一定需要四次吗？</h3><p><code>答案是“大多数情况下，三次挥手比四次挥手情况更多“</code></p>
+<p><img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/tcp4.png" alt=""></p>
+<h3 id="什么情况下是三次挥手"><a href="#什么情况下是三次挥手" class="headerlink" title="什么情况下是三次挥手"></a><strong>什么情况下是三次挥手</strong></h3><p>当被动关闭方（上图的服务端）在 TCP 挥手过程中，「<strong>没有数据要发送」并且「开启了 TCP 延迟确认机制」，那么第二和第三次挥手就会合并传输，这样就出现了三次挥手。</strong></p>
+<p><a target="_blank" rel="noopener" href="https://xiaolincoding.com/network/3_tcp/tcp_three_fin.html#%E4%B8%BA%E4%BB%80%E4%B9%88-tcp-%E6%8C%A5%E6%89%8B%E9%9C%80%E8%A6%81%E5%9B%9B%E6%AC%A1%E5%91%A2">https://xiaolincoding.com/network/3_tcp/tcp_three_fin.html#为什么-tcp-挥手需要四次呢</a></p>
+<h3 id="讨论四次挥手中每一次挥手丢失会发生什么。"><a href="#讨论四次挥手中每一次挥手丢失会发生什么。" class="headerlink" title="讨论四次挥手中每一次挥手丢失会发生什么。"></a>讨论四次挥手中每一次挥手丢失会发生什么。</h3><blockquote>
+<p>注意：ACK报文是不会主动重发的，当丢失的报文是ACK报文时，重传的报文是FIN报文！！</p>
+</blockquote>
+<h3 id="为什么需要TIME-WAIT状态"><a href="#为什么需要TIME-WAIT状态" class="headerlink" title="为什么需要TIME_WAIT状态"></a>为什么需要TIME_WAIT状态</h3><blockquote>
+<p>1.<em>原因一：防止历史连接中的数据，被后面相同四元组的连接错误的接收</em></p>
+</blockquote>
+<p>如果TIME_WAIT状态不存在或者时间小于<code>2MSL</code></p>
+<p><img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/tcp5.png" alt=""></p>
+<blockquote>
+<p>2.<em>原因二：保证「被动关闭连接」的一方，能被正确的关闭</em></p>
+</blockquote>
+<p>如果客户端（主动关闭方）最后一次 ACK 报文（第四次挥手）在网络中丢失了，那么按照 TCP 可靠性原则，服务端（被动关闭方）会重发 FIN 报文。</p>
+<p>假设客户端没有 TIME_WAIT 状态，而是在发完最后一次回 ACK 报文就直接进入 CLOSE 状态，如果该 ACK 报文丢失了，服务端则重传的 FIN 报文，而这时客户端已经进入到关闭状态了，在收到服务端重传的 FIN 报文后，就会回 RST 报文。</p>
+<p>服务端收到这个 RST 并将其解释为一个错误（Connection reset by peer），这对于一个可靠的协议来说不是一个优雅的终止方式。</p>
+<h2 id="Socket编程"><a href="#Socket编程" class="headerlink" title="Socket编程"></a>Socket编程</h2><p><img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/tcp6.png" alt=""></p>
+<ul>
+<li>服务端和客户端初始化 <code>socket</code>，得到文件描述符；</li>
+<li>服务端调用 <code>bind</code>，将 socket 绑定在指定的 IP 地址和端口;</li>
+<li>服务端调用 <code>listen</code>，进行监听；</li>
+<li>服务端调用 <code>accept</code>，等待客户端连接；</li>
+<li>客户端调用 <code>connect</code>，向服务端的地址和端口发起连接请求；</li>
+<li>服务端 <code>accept</code> 返回用于传输的 <code>socket</code> 的文件描述符；</li>
+<li>客户端调用 <code>write</code> 写入数据；服务端调用 <code>read</code> 读取数据；</li>
+<li>客户端断开连接时，会调用 <code>close</code>，那么服务端 <code>read</code> 读取数据的时候，就会读取到了 <code>EOF</code>，待处理完数据后，服务端调用 <code>close</code>，表示连接关闭。</li>
+</ul>
+<p>这里需要注意的是，服务端调用 <code>accept</code> 时，连接成功了会返回一个已完成连接的 socket，后续用来传输数据。</p>
+<p>所以，监听的 socket 和真正用来传送数据的 socket，是「两个」 socket，一个叫作<strong>监听 socket</strong>，一个叫作<strong>已完成连接 socket</strong>。</p>
+<p>成功连接建立之后，双方开始通过 read 和 write 函数来读写数据，就像往一个文件流里面写东西一样。</p>
+<p>Linux内核中会维护两个队列：</p>
+<ul>
+<li>半连接队列（SYN 队列）：接收到一个 SYN 建立连接请求，处于 SYN_RCVD 状态；</li>
+<li>全连接队列（Accpet 队列）：已完成 TCP 三次握手过程，处于 ESTABLISHED 状态；</li>
+</ul>
 
                 
             </div>
@@ -562,12 +521,16 @@ b <span class="token operator">=</span> torch<span class="token punctuation">.</
                     
                         <div class="article-tag">
                             
-                                <a href="../tags/PyTorch/">
-                                    <span class="chip bg-color">PyTorch</span>
+                                <a href="../tags/tcp/">
+                                    <span class="chip bg-color">tcp</span>
                                 </a>
                             
-                                <a href="../tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
-                                    <span class="chip bg-color">机器学习</span>
+                                <a href="../tags/%E9%9D%A2%E7%BB%8F/">
+                                    <span class="chip bg-color">面经</span>
+                                </a>
+                            
+                                <a href="../tags/%E7%BD%91%E7%BB%9C/">
+                                    <span class="chip bg-color">网络</span>
                                 </a>
                             
                         </div>
@@ -737,9 +700,68 @@ b <span class="token operator">=</span> torch<span class="token punctuation">.</
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="">
+                    <div class="card-image">
+                        
+                        
+                        <img src="../medias/featureimages/9.jpg" class="responsive-img" alt="tcp">
+                        
+                        <span class="card-title">tcp</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-07-11
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="../categories/%E9%9D%A2%E7%BB%8F/" class="post-category">
+                                    面经
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="../tags/tcp/">
+                        <span class="chip bg-color">tcp</span>
+                    </a>
+                    
+                    <a href="../tags/%E9%9D%A2%E7%BB%8F/">
+                        <span class="chip bg-color">面经</span>
+                    </a>
+                    
+                    <a href="../tags/%E7%BD%91%E7%BB%9C/">
+                        <span class="chip bg-color">网络</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="../paperreading2/">
                     <div class="card-image">
@@ -756,9 +778,9 @@ b <span class="token operator">=</span> torch<span class="token punctuation">.</
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-04-10
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-10
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -792,66 +814,6 @@ b <span class="token operator">=</span> torch<span class="token punctuation">.</
                     
                     <a href="../tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
                         <span class="chip bg-color">深度学习</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="../paperreading1/">
-                    <div class="card-image">
-                        
-                        <img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/cover.png" class="responsive-img" alt="论文翻译｜CycleGAN">
-                        
-                        <span class="card-title">论文翻译｜CycleGAN</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            翻译图像转换领域的经典论文CycleGAN ——《Unpaired_Image-to-Image_Translation_Using_Cycle-Consistent_Adversarial_Networks》
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-30
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="../categories/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" class="post-category">
-                                    文献阅读
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="../tags/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/">
-                        <span class="chip bg-color">风格迁移</span>
-                    </a>
-                    
-                    <a href="../tags/CycleGAN/">
-                        <span class="chip bg-color">CycleGAN</span>
-                    </a>
-                    
-                    <a href="../tags/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91/">
-                        <span class="chip bg-color">论文翻译</span>
-                    </a>
-                    
-                    <a href="../tags/%E6%97%A0%E7%9B%91%E7%9D%A3/">
-                        <span class="chip bg-color">无监督</span>
                     </a>
                     
                 </div>
