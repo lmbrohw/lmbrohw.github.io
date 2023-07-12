@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="学习｜Linux命令, null">
+    <meta name="keywords" content="基于CycleGAN的人像动漫化模型, null">
     <meta name="description" content="想起了就记一点">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>学习｜Linux命令 | HWblog</title>
+    <title>基于CycleGAN的人像动漫化模型 | HWblog</title>
     <link rel="icon" type="image/png" href="../icon.png">
 
     <link rel="stylesheet" type="text/css" href="../libs/awesome/css/all.css">
@@ -208,12 +208,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../medias/featureimages/23.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../medias/featureimages/18.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">学习｜Linux命令</h1>
+                    <h1 class="description center-align post-title">基于CycleGAN的人像动漫化模型</h1>
                 </div>
             </div>
         </div>
@@ -329,16 +329,20 @@
                     
                     <div class="article-tag">
                         
-                            <a href="../tags/%E9%9D%A2%E7%BB%8F/">
-                                <span class="chip bg-color">面经</span>
+                            <a href="../tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
+                                <span class="chip bg-color">深度学习</span>
                             </a>
                         
-                            <a href="../tags/Linux/">
-                                <span class="chip bg-color">Linux</span>
+                            <a href="../tags/CycleGAN/">
+                                <span class="chip bg-color">CycleGAN</span>
                             </a>
                         
-                            <a href="../tags/%E5%91%BD%E4%BB%A4/">
-                                <span class="chip bg-color">命令</span>
+                            <a href="../tags/PyTorch/">
+                                <span class="chip bg-color">PyTorch</span>
+                            </a>
+                        
+                            <a href="../tags/%E5%8A%A8%E6%BC%AB%E5%8C%96/">
+                                <span class="chip bg-color">动漫化</span>
                             </a>
                         
                     </div>
@@ -349,8 +353,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="../categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
-                                学习
+                            <a href="../categories/%E9%A1%B9%E7%9B%AE/" class="post-category">
+                                项目
                             </a>
                         
                     </div>
@@ -362,7 +366,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-05-11
+                    2022-07-12
                 </div>
                 
 
@@ -371,14 +375,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.7k
+                    3.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    11 分
                 </div>
                 
 
@@ -401,89 +405,65 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <hr>
-<div align="center"><strong><font size="5">Linux常用文件相关命令</font></strong></div>
+                <p>参考</p>
+<blockquote>
+<p>CycleGAN论文：<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/8237506">https://ieeexplore.ieee.org/document/8237506</a></p>
+<hr>
+</blockquote>
+<div align="center"><strong><font size="5">基于CycleGAN的人像动漫化模型</font></strong></div>
 
 <hr>
-<h2 id="scp"><a href="#scp" class="headerlink" title="scp"></a>scp</h2><p>将本地文件上传到服务器（在本地命令行执行）  </p>
-<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx">scp <span class="token operator">/</span>User<span class="token operator">/</span>mac<span class="token operator">/</span>code1<span class="token punctuation">.</span>py root@<span class="token number">8.130</span><span class="token number">.10</span><span class="token number">.45</span><span class="token operator">:</span><span class="token operator">/</span>home
+<p>本文是在经典的无监督风格迁移模型cycleGAN的基础上进行探究，提出了一种改进的，针对人类头像动漫化风格转换的新模型。</p>
+<p>虽然改进的点不多，改进的创意也不是很新，效果提升也没有很大，但是，这是我深度学习和科研的入门项目！</p>
+<p>通过这个项目，我大概了解了深度学习中如何构建网络模型、设置损失函数、调整数据集的输入输出、如何训练好一个模型，再调用已训练的模型进行风格迁移，以及在训练过程中定期保存模型参数checkpoint等。</p>
+<p>下面我将梳理这个项目的模型结构。</p>
+<hr>
+<h1 id="模型结构"><a href="#模型结构" class="headerlink" title="模型结构"></a>模型结构</h1><p>作为生成对抗网络（GAN）领域的无监督算法，在本算法中，我们设置了两个生成器和两个判别器，其中，生成器<code>Generator(A2B)</code>和判别器<code>Discriminator(B)</code>用于生成和分辨目标域风格图像；生成器<code>Generator(B2A)</code>和判别器<code>Discriminator(A)</code>用于循环生成和分辨源域风格图像。在训练过程中，会单独训练生成器和判别器。</p>
+<p>图片中展示了模型的整个网络结构的关系。</p>
+<p><img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%E5%9B%BE.jpg" alt=""></p>
+<p>图中，两个生成器为 <code>G_A2B</code> 和 <code>G_B2A</code> ，两个判别器为 <code>D_A</code> 和 <code>D_B</code> ,另外包括源域图像<code>real_A</code>、目标域图像<code>real_B</code>、生成的目标域图像<code>fake_B</code>和生成的源域图像<code>fake_A</code>、由<code>fake_B</code>循环生成的源域图像<code>rec_A</code>和由<code>fake_A</code>循环生成的目标域图像<code>rec_B</code>，以及输入<code>real_A</code>图像至生成器 <code>G_B2A</code> 得到的<code>same_A</code>、输入<code>real_B</code>图像至生成器 <code>G_A2B</code> 得到的<code>same_B</code>。</p>
+<h2 id="残差网络"><a href="#残差网络" class="headerlink" title="残差网络"></a>残差网络</h2><p>本文算法在生成器网络中加入残差模块，残差模块的结构如下图所示。</p>
+<p><img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/%E6%AE%8B%E5%B7%AE%E6%A8%A1%E5%9D%97.jpg" alt=""></p>
+<h2 id="生成器"><a href="#生成器" class="headerlink" title="生成器"></a>生成器</h2><p>本文算法的最终任务是一幅真实人像风格的图片经过模型可以转换得到动漫风格的人像图片。同时，因为本文算法模型使用循环生成网络结构，所以设置两个结构相同，作用不同的生成器，它们分别是用于生成动漫风格图像的<code>Generator(A2B)</code>和生成真实人像风格图片的<code>Generator(B2A)</code>。</p>
+<p>该生成器由下采样、上采样模块和转换模块组成，为了使生成器的训练更稳健，还加入了残差模块，考虑到本实验中经过数据预处理后得到的输入图像大小为  像素，因此选择加入的残差模块数量为9个，残差模块的结构细节见3.1.1节。在生成器网络中，使用IN（Instance Normalization）对图像做归一化操作，使用ReLu作激活函数。生成器网络的结构如下图所示</p>
+<p><img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/%E7%94%9F%E6%88%90%E5%99%A8.jpg" alt=""></p>
+<h2 id="判别器"><a href="#判别器" class="headerlink" title="判别器"></a>判别器</h2><p>在本文算法模型中，判别器的功能是分辨输入的图像为真实的图像或为生成器生成的，由于是循环生成网络结构，我们同样设置两个结构相同，作用不同的判别器，用于判断不同风格域图像的真实性。在判别器网络中，使用IN(Instance Normalization)对图像做归一化操作，使用<code>LeakyReLu</code>作激活函数。网络结构如下图所示：</p>
+<p><img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/%E5%88%A4%E5%88%AB%E5%99%A8.jpg" alt=""></p>
+<hr>
+<h1 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h1><p>损失函数（Loss Function）是用来衡量模型的预测值与真实值之间的差异，是一个非负实值函数，一般使用来表示，损失函数可以保证模型朝着理想的方向进行优化，好的损失函数能够使模型的训练过程更加稳定，得到的模型的性能更好。模型的预测值与真实值之间的差异程度称为损失值，但通常而言，损失值并不是取得极小时最佳，这样会导致模型出现过拟合的情况。损失函数参与模型训练的具体流程如下：首先，给模型中的各参数赋随机值，然后将训练样本输入到模型得到输出值，利用损失函数计算该输出值与目标值之间的损失，根据该损失值反向传播去更新模型中计算公式的参数值。重复以上步骤，逐渐降低损失函数的结果值，最终使输出朝着期望的方向靠拢，以达到学习的目的。</p>
+<h2 id="感知损失"><a href="#感知损失" class="headerlink" title="感知损失"></a>感知损失</h2><blockquote>
+<p>添加这个损失函数是我的一个创新点。</p>
+</blockquote>
+<p>将源域图像转换到目标域图像的生成器Generator(A2B)在生成动漫头像时，不仅要保证所生成的图像具有动漫风格，还需要该图像同时保持原图片中人物的形象特征，比如生成的图像要能在除面部纹理、阴影高光和头发丝等细节方面同原图像尽量保持一致，这样使每幅动漫人像面孔都有各自的特点，达到“千人千面”的效果。</p>
+<p>假使本算法中的真实人像图片为<code>real_A</code>，生成器<code>Generator(A2B)</code>生成的动漫图像为<code>fake_B</code>，在本模型的结构中，我们在<code>real_A</code>和<code>fake_B</code>之间、<code>real_B</code>和<code>fake_A</code>之间加入了感知损失，该损失函数如式（1）所示：</p>
+<script type="math/tex; mode=display">
+\begin{equation}\begin{aligned}L_{\mathrm{vgg}} & =\mathbb{E}_{x \sim p_{\mathrm{data}}(x)}\left[\left\|h\left(G_{A 2 B}(x)\right)-h(x)\right\|_1\right] \\& +\mathbb{E}_{y \sim p_{\mathrm{data}}(y)}\left[\left\|h\left(G_{B 2 A}(y)\right)-h(y)\right\|_1\right]\end{aligned}\end{equation}</script><p>式中，<code>h(·)</code>是对图像进行特征提取得到的特征值，本算法利用预训练好的卷积神经网络VGG-16的特定特征层进行图像特征提取，分别提取到两幅图像的特征值后，再对其做平均绝对误差（Mean Absolute Error,MAE）计算，即通过降低生成图像和原图像之间的高维特征的差异，使得生成的<code>fake_B</code>在一个特定的特征空间能够最大限度与<code>real_A</code>相同。</p>
+<p>VGG-16网络共有13个卷积层，5个池化层和3个全连接层。2015年，Gatys等学者在其风格迁移的论文工作中提到，卷积网络的深度能够直接影响到对原图像特征信息的提取力度，其中，较浅的卷积层提取得到的特征，能够很好地保持着原图像的像素值；较深的卷积层提取得到的特征有利于保留原始图像的整体结构等更高层次的信息，但是越深的卷积层提取得到的特征，会更难重构出准确的像素值。因此，对于VGG-16网络特征层的选择是相当重要的，本小节加载官方预训练好的VGG-16神经网络模型，对网络每一层提取得的特征图进行可视化展示，展示结果如图 3.6所示，该图一共展示了VGG-16网络的其中五个卷积层的结果，从左至右分别是conv1-2、conv2-2、conv3-3、conv4-3和conv5-3。可以看到，conv2-2层通过高度锐化的形式将原图像中人脸的轮廓信息、高光阴影等诸多细节展现出来，相反，VGG-16卷积网络的最后一个卷积层conv5-3层的画面是非常抽象的，原图像中的人脸五官，甚至面部轮廓信息都已不复存在。</p>
+<p><img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/vgg16.jpg" alt=""></p>
+<h2 id="生成对抗损失"><a href="#生成对抗损失" class="headerlink" title="生成对抗损失"></a>生成对抗损失</h2><p>本文算法是基于生成对抗网络（GANs）的图像风格迁移算法，核心思想是生成器与判别器相互对抗：生成器力求输出能够混淆判别器判断的图像，判别器力求准确地分辨真实图像和生成图像，它们各自朝着最优的方向进行优化，最终达到一个平衡状态。为了使模型训练更加稳定，对于生成对抗损失的表达，本文算法选择使用最小二乘损失（Least-Squares Loss）而不是传统GAN模型中的负对数似然函数。</p>
+<p>训练生成器<code>Generator(A2B)</code>时，通过本小节的生成对抗损失使其朝着理想的方向不断优化：输出与目标域风格高度相似的动漫图像，导致目标域风格的判别器<code>Discriminator(B)</code>将此生成图像判断为真实的目标域图像，即；对于生成器<code>Generator(B2A)</code>，则希望等式成立。因此，在固定住判别器时，单独训练两个生成器的生成对抗损失函数如式（2）所示：</p>
+<script type="math/tex; mode=display">
+\begin{equation}L_{\mathrm{GAN}-\mathrm{G}}=\mathbb{E}_{x \sim p_{\mathrm{data}}(x)}\left[\left(D_B\left(G_{A 2 B}(x)\right)-1\right)^2\right]+\mathbb{E}_{y \sim p_{\mathrm{data}}(y)}\left[\left(D_A\left(G_{B 2 A}(y)\right)-1\right)^2\right]\end{equation}</script><h2 id="循环一致性损失"><a href="#循环一致性损失" class="headerlink" title="循环一致性损失"></a>循环一致性损失</h2><p>作为无监督的用于图像到图像转换的算法，本模型使用了<code>A→B→A</code>和<code>B→A→B</code>的循环生成结构,以及用于约束生成器的循环一致性损失函数。该损失函数能够保证生成器<code>Generator(A2B)</code>所生成的动漫风格图像在尽可能骗过判别器<code>Discriminator(B)</code>的情况下，依然能通过生成器<code>Generator(B2A)</code>还原到初始样貌，这样能避免生成器陷入一个错误的学习方向：不论原始图像是什么样，生成的图像只需与目标域图像风格相似即可。<br>与上一小节中图像的命名类似，本小节中依然称原始图像为<code>real_A</code>，生成器<code>Generator(A2B)</code>生成的图像为<code>fake_B</code>，<code>fake_B</code>再次经过<code>Generator(B2A)</code>生成图像<code>recovered_A</code>。本文算法的模型结构便是选择在real_A和<code>recovered_A</code>之间、<code>real_B</code>和<code>recovered_B</code>之间设置循环一致性损失，该损失函数是对两幅图逐像素做平均绝对误差计算，以此使得real_A和<code>recovered_A</code>、<code>real_B</code>和<code>recovered_B</code>尽可能保持相同。损失函数如式（3）所示：</p>
+<script type="math/tex; mode=display">
+\begin{equation}\begin{aligned}L_{\text {cycle }} & =\mathbb{E}_{x \sim p_{\text {data }}(x)}\left[\left\|\mathrm{G}_{\mathrm{B} 2 \mathrm{~A}}\left(\mathrm{G}_{\mathrm{A} 2 \mathrm{~B}}(x)\right)-x\right\|_1\right] \\& +\mathbb{E}_{y \sim p_{\text {data }}}(y)\left[\left\|\mathrm{G}_{\mathrm{A} 2 \mathrm{~B}}\left(\mathrm{G}_{\mathrm{B} 2 A}(y)\right)-y\right\|_1\right]\end{aligned}\end{equation}</script><h2 id="身份损失"><a href="#身份损失" class="headerlink" title="身份损失"></a>身份损失</h2><p>在本文算法中，生成器<code>Generator(A2B)</code>是用于生成动漫风格图像，那么，当我们选择输入一张本就是该动漫风格的图像<code>real_B</code>时，该生成器应该要仍然生成“<code>real_B</code>”，即生成的动漫图像（按照上面的规范称为<code>fake_B</code>）与原始图像<code>real_B</code>的数据分布尽可能靠近，只有这样我们才能证明生成器<code>Generator(A2B)</code>具有生成动漫风格图像的能力。同样，对于生成器<code>Generator(B2A)</code>，也需要加入一个身份损失来保证其具有从动漫风格图像转换到写实风格图像的能力。在实验中我们还发现该身份损失能够让图像在风格迁移过程中保持原色调。<br>综上所述，我们在<code>real_B</code>和<code>fake_B</code>之间、<code>real_A</code>和<code>fake_A</code>之间加入身份损失，该损失函数同样是对两幅图逐像素做平均绝对误差计算，迫使两幅图像尽量保持相同。损失函数如式（4）所示：</p>
+<script type="math/tex; mode=display">
+\begin{equation}\begin{aligned}L_{\text {identity }} & =\mathbb{E}_{x \sim p_{\text {data }}(x)}\left[\left\|\mathrm{G}_{\mathrm{A} 2 \mathrm{~B}}(y)-y\right\|_1\right] \\& +\mathbb{E}_{y \sim p_{\text {data }}}(y)\left[\left\|\mathrm{G}_{\mathrm{B} 2 \mathrm{~A}}(x)-x\right\|_1\right]\end{aligned}\end{equation}</script><h2 id="总的损失函数"><a href="#总的损失函数" class="headerlink" title="总的损失函数"></a>总的损失函数</h2><ol>
+<li>训练生成器<code>Generator(A2B)</code>和生成器<code>Generator(B2A)</code>时：</li>
+</ol>
+<script type="math/tex; mode=display">
+\begin{equation}L_G=\alpha * L_{\mathrm{vgg}}+\beta * L_{\mathrm{GAN}-\mathrm{G}}+\gamma * L_{\mathrm{cycle}}+\delta * L_{\text {identity }}\end{equation}</script><ol>
+<li>训练判别器<code>Discriminator(A)</code>时：</li>
+</ol>
+<script type="math/tex; mode=display">
+\begin{equation}L_{D_A}=\mu * L_{G A N-D_A}\end{equation}</script><ol>
+<li>训练判别器<code>Discriminator(B)</code>时:</li>
+</ol>
+<script type="math/tex; mode=display">
+\begin{equation}L_{D_B}=\sigma * L_{G A N-D_B}\end{equation}</script><hr>
+<p>至此就完成了模型主体结构的理论部分，我将在下一篇文章中发布PyTorch版本的代码部分！</p>
+<p>附上我的模型效果图！</p>
+<p><img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/%E6%95%88%E6%9E%9C%E5%9B%BE.png" alt=""></p>
 
-scp root@<span class="token number">8.130</span><span class="token number">.52</span><span class="token number">.85</span><span class="token punctuation">)</span><span class="token operator">:</span><span class="token operator">/</span>home<span class="token operator">/</span>code1<span class="token punctuation">.</span>py <span class="token operator">/</span>Users<span class="token operator">/</span>mac<span class="token operator">/</span>Documents
-
-scp <span class="token operator">/</span>User<span class="token operator">/</span>mac<span class="token comment">/* root@8.130.10.45:/home 上传该文件夹下面所有文件</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="cp-r"><a href="#cp-r" class="headerlink" title="cp -r"></a>cp -r</h2><p>服务器上复制文件或  -r 文件夹 </p>
-<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx">cp <span class="token operator">/</span>home<span class="token operator">/</span>code1<span class="token punctuation">.</span>py <span class="token operator">/</span>root<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h2 id="find"><a href="#find" class="headerlink" title="find"></a>find</h2><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx">find <span class="token operator">/</span>path<span class="token operator">/</span>to<span class="token operator">/</span>directory <span class="token operator">-</span>name <span class="token string">"filename"</span> 按照名称查找 <span class="token operator">**</span>使用较多<span class="token operator">**</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx">find <span class="token operator">/</span>path<span class="token operator">/</span>to<span class="token operator">/</span>directory <span class="token operator">-</span>type f 指定文件类型查找<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h2 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h2><p>在指定文件中查找字符串</p>
-<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx">grep <span class="token string">"string"</span> <span class="token operator">/</span>path<span class="token operator">/</span>to<span class="token operator">/</span>file
-
-grep <span class="token operator">-</span>v <span class="token string">"string"</span> <span class="token operator">/</span>path<span class="token operator">/</span>to<span class="token operator">/</span>file 查找不包括指定字符串的行
-
-grep <span class="token operator">-</span>c <span class="token string">"string"</span> <span class="token operator">/</span>path<span class="token operator">/</span>to<span class="token operator">/</span>file 查找指定字符串的数目<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="touch"><a href="#touch" class="headerlink" title="touch"></a>touch</h2><p>新建文件</p>
-<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx">touch <span class="token operator">/</span>home<span class="token operator">/</span>test<span class="token punctuation">.</span>txt
-
-touch <span class="token operator">/</span>path<span class="token operator">/</span>to<span class="token operator">/</span>file  如果该文件存在，则更新该文件的时间戳<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h2 id="tar"><a href="#tar" class="headerlink" title="tar"></a>tar</h2><p>归档文件</p>
-<p><img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/linux.png" alt=""></p>
-<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx">tar <span class="token operator">-</span>cvf archive<span class="token punctuation">.</span>tar <span class="token operator">/</span>path<span class="token operator">/</span>to<span class="token operator">/</span>directory  将目录的所有文件归档为一个大文件
-
-tar <span class="token operator">-</span>cvf tar1<span class="token punctuation">.</span>tar <span class="token number">1</span><span class="token punctuation">.</span>txt <span class="token number">2</span><span class="token punctuation">.</span>py linux2  一一列举文件和目录
-
-提取归档
-
-tar <span class="token operator">-</span>xvf tar1<span class="token punctuation">.</span>tar <span class="token operator">-</span><span class="token constant">C</span> 指定提取归档文件放置的目录<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="gzip"><a href="#gzip" class="headerlink" title="gzip"></a>gzip</h2><p>可以和tar配合使用</p>
-<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx">压缩 gzip
-解压 gzip <span class="token operator">-</span>d
-
-<span class="token number">1.</span> 压缩文件：<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">gzip {{filename}}</span><span class="token template-punctuation string">`</span></span>，该命令将会压缩指定的文件，并将压缩后的文件保存为<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">.gz</span><span class="token template-punctuation string">`</span></span>文件。
-<span class="token number">2.</span> 解压文件：<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">gzip -d {{filename}}.gz</span><span class="token template-punctuation string">`</span></span>，该命令将会解压指定的<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">.gz</span><span class="token template-punctuation string">`</span></span>文件，并将解压后的文件保存在当前目录下。
-<span class="token number">3.</span> 查看压缩文件的内容：<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">gzip -l {{filename}}.gz</span><span class="token template-punctuation string">`</span></span>，该命令将会显示指定的<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">.gz</span><span class="token template-punctuation string">`</span></span>文件的详细信息，包括原始文件大小、压缩后的文件大小、压缩比等。
-<span class="token operator">**</span><span class="token operator">*</span>归档和压缩同时使用<span class="token operator">**</span><span class="token operator">*</span>
-<span class="token number">4.</span> 压缩目录：<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">tar -czvf {{archive_name}}.tar.gz {{directory}}</span><span class="token template-punctuation string">`</span></span>，该命令将会将指定的目录压缩成<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">.tar.gz</span><span class="token template-punctuation string">`</span></span>格式的归档文件。
-<span class="token number">5.</span> 解压目录：<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">tar -xzvf {{archive_name}}.tar.gz</span><span class="token template-punctuation string">`</span></span>，该命令将会解压指定的<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">.tar.gz</span><span class="token template-punctuation string">`</span></span>格式的归档文件，并将解压后的文件保存在当前目录<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h2><p>注意压缩目录时，必须带参数 -r 否则压缩的是空目录</p>
-<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token number">1.</span> 压缩文件：<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">zip {{archive_name}} {{filename}}</span><span class="token template-punctuation string">`</span></span>，该命令将会压缩指定的文件，并将压缩后的文件保存为<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">.zip</span><span class="token template-punctuation string">`</span></span>文件。
-<span class="token number">2.</span> 解压文件：<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">unzip {{archive_name}}.zip</span><span class="token template-punctuation string">`</span></span>，该命令将会解压指定的<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">.zip</span><span class="token template-punctuation string">`</span></span>文件，并将解压后的文件保存在当前目录下。
-<span class="token number">3.</span> 查看压缩文件的内容：<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">unzip -l {{archive_name}}.zip</span><span class="token template-punctuation string">`</span></span>，该命令将会显示指定的<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">.zip</span><span class="token template-punctuation string">`</span></span>文件的详细信息，包括原始文件大小、压缩后的文件大小、压缩比等。
-<span class="token number">4.</span> 压缩目录：<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">zip -r {{archive_name}} {{directory}}</span><span class="token template-punctuation string">`</span></span>，该命令将会将指定的目录压缩成<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">.zip</span><span class="token template-punctuation string">`</span></span>格式的归档文件。
-<span class="token number">5.</span> 解压目录：<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">unzip {{archive_name}}.zip</span><span class="token template-punctuation string">`</span></span>，该命令将会解压指定的<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">.zip</span><span class="token template-punctuation string">`</span></span>格式的归档文件，并将解压后的文件保存在当前目录下。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="wget"><a href="#wget" class="headerlink" title="wget"></a>wget</h2><p>从Web服务器上下载文件</p>
-<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token number">1.</span> 下载文件：<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">wget {{url}}</span><span class="token template-punctuation string">`</span></span>，该命令将会下载指定的<span class="token constant">URL</span>对应的文件，并将其保存在当前目录下。
-<span class="token number">2.</span> 下载文件并指定保存路径：<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">wget -P {{path}} {{url}}</span><span class="token template-punctuation string">`</span></span>，该命令将会下载指定的<span class="token constant">URL</span>对应的文件，并将其保存在指定的路径下。
-<span class="token number">3.</span> 后台下载文件：<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">wget -b {{url}}</span><span class="token template-punctuation string">`</span></span>，该命令将会在后台下载指定的<span class="token constant">URL</span>对应的文件。
-<span class="token number">4.</span> 断点续传下载：<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">wget -c {{url}}</span><span class="token template-punctuation string">`</span></span>，该命令将会从上次下载中断的地方继续下载指定的<span class="token constant">URL</span>对应的文件。
-<span class="token number">5.</span> 限速下载：<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">wget --limit-rate={{speed}} {{url}}</span><span class="token template-punctuation string">`</span></span>，该命令将会以指定的速度下载指定的<span class="token constant">URL</span>对应的文件。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="curl"><a href="#curl" class="headerlink" title="curl"></a>curl</h2><p>从Web服务器上获取数据</p>
-<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token number">1.</span> 获取网页内容：<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">curl {{url}}</span><span class="token template-punctuation string">`</span></span>，该命令将会获取指定<span class="token constant">URL</span>对应的网页内容，并将其输出到终端上。
-<span class="token number">2.</span> 保存网页内容到文件：<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">curl -o {{filename}} {{url}}</span><span class="token template-punctuation string">`</span></span>，该命令将会获取指定<span class="token constant">URL</span>对应的网页内容，并将其保存到指定的文件中。
-<span class="token number">3.</span> 显示<span class="token constant">HTTP</span>响应头信息：<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">curl -I {{url}}</span><span class="token template-punctuation string">`</span></span>，该命令将会获取指定<span class="token constant">URL</span>对应的<span class="token constant">HTTP</span>响应头信息，并将其输出到终端上。
-<span class="token number">4.</span> 发送<span class="token constant">POST</span>请求：<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">curl -X POST -d '{{data}}' {{url}}</span><span class="token template-punctuation string">`</span></span>，该命令将会向指定<span class="token constant">URL</span>发送一个<span class="token constant">POST</span>请求，并将指定的数据作为请求体发送。
-<span class="token number">5.</span> 发送<span class="token constant">HTTP</span>请求头信息：<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">curl -H '{{header}}' {{url}}</span><span class="token template-punctuation string">`</span></span>，该命令将会向指定<span class="token constant">URL</span>发送一个<span class="token constant">HTTP</span>请求，并在请求头中添加指定的信息。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="sudo"><a href="#sudo" class="headerlink" title="sudo"></a>sudo</h2><p>以超级用户（root）的身份执行命令</p>
-<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token number">1.</span> 以超级用户身份执行命令：<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">sudo {{command}}</span><span class="token template-punctuation string">`</span></span>，该命令将会以超级用户的身份执行指定的命令。
-<span class="token number">2.</span> 以其他用户身份执行命令：<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">sudo -u {{username}} {{command}}</span><span class="token template-punctuation string">`</span></span>，该命令将会以指定用户的身份执行指定的命令。
-<span class="token number">3.</span> 列出当前用户可以使用sudo执行的命令：<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">sudo -l</span><span class="token template-punctuation string">`</span></span>，该命令将会列出当前用户可以使用sudo执行的命令列表。
-<span class="token number">4.</span> 切换到超级用户：<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">sudo -s</span><span class="token template-punctuation string">`</span></span>，该命令将会切换到超级用户的shell环境。
-<span class="token number">5.</span> 切换到其他用户：<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">sudo -u {{username}} -s</span><span class="token template-punctuation string">`</span></span>，该命令将会切换到指定用户的shell环境。
-
-请注意，使用sudo命令需要输入当前用户的密码，以确认当前用户有权限以超级用户的身份执行命令。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="mkdir-p"><a href="#mkdir-p" class="headerlink" title="mkdir -p"></a>mkdir -p</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token variable"><span class="token variable">`</span>-p<span class="token variable">`</span></span> 是 <span class="token variable"><span class="token variable">`</span><span class="token function">mkdir</span><span class="token variable">`</span></span> 命令的一个选项，表示创建目录时自动创建所需的父目录。如果您要创建的目录的父目录不存在，<span class="token variable"><span class="token variable">`</span><span class="token function">mkdir</span><span class="token variable">`</span></span> 命令将会报错。使用 <span class="token variable"><span class="token variable">`</span>-p<span class="token variable">`</span></span> 选项可以自动创建所需的父目录，避免了这个问题。
-
-例如，如果您要创建 <span class="token variable"><span class="token variable">`</span>/data/jenkins_home/<span class="token variable">`</span></span> 目录，但 <span class="token variable"><span class="token variable">`</span>/data/<span class="token variable">`</span></span> 目录不存在，使用以下命令可以自动创建 <span class="token variable"><span class="token variable">`</span>/data/<span class="token variable">`</span></span> 目录和 <span class="token variable"><span class="token variable">`</span>/data/jenkins_home/<span class="token variable">`</span></span> 目录：
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>mkdir -p /data/jenkins_home/<br></p><pre class="line-numbers language-none"><code class="language-none">
-这样，如果 `/data/` 目录不存在，`mkdir` 命令将会自动创建它，然后再创建 `/data/jenkins_home/` 目录。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p></p>
-<h2 id="more-less"><a href="#more-less" class="headerlink" title="more less"></a>more less</h2><p>打开后默认只显示一屏内容，终端底部显示当前阅读的进度。可以使用 <code>Enter</code> 键向下滚动一行，使用 <code>Space</code> 键向下滚动一屏，按下 <code>h</code> 显示帮助，<code>q</code> 退出</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h2 id="tail-head"><a href="#tail-head" class="headerlink" title="tail head"></a>tail head</h2><p>只看文件末尾和开头</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">tail</span> -n <span class="token number">1</span> /etc/passwd  只看一行， 加上 -n 参数，后面紧跟行数<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>关于 <code>tail</code> 命令，不得不提的还有它一个很牛的参数 <code>-f</code>，这个参数可以实现不停地读取某个文件的内容并显示。这可以让我们动态查看日志，达到实时监视的目的。</p>
-<h2 id="file"><a href="#file" class="headerlink" title="file"></a>file</h2><p>查看文件的类型</p>
-<p>关于 <code>tail</code> 命令，不得不提的还有它一个很牛的参数 <code>-f</code>，这个参数可以实现不停地读取某个文件的内容并显示。这可以让我们动态查看日志，达到实时监视的目的。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">file</span> /bin/ls<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -547,16 +527,20 @@ tar <span class="token operator">-</span>xvf tar1<span class="token punctuation"
                     
                         <div class="article-tag">
                             
-                                <a href="../tags/%E9%9D%A2%E7%BB%8F/">
-                                    <span class="chip bg-color">面经</span>
+                                <a href="../tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
+                                    <span class="chip bg-color">深度学习</span>
                                 </a>
                             
-                                <a href="../tags/Linux/">
-                                    <span class="chip bg-color">Linux</span>
+                                <a href="../tags/CycleGAN/">
+                                    <span class="chip bg-color">CycleGAN</span>
                                 </a>
                             
-                                <a href="../tags/%E5%91%BD%E4%BB%A4/">
-                                    <span class="chip bg-color">命令</span>
+                                <a href="../tags/PyTorch/">
+                                    <span class="chip bg-color">PyTorch</span>
+                                </a>
+                            
+                                <a href="../tags/%E5%8A%A8%E6%BC%AB%E5%8C%96/">
+                                    <span class="chip bg-color">动漫化</span>
                                 </a>
                             
                         </div>
@@ -730,13 +714,13 @@ tar <span class="token operator">-</span>xvf tar1<span class="token punctuation"
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="../tcp/">
+                <a href="../xue-xi-docker-bu-shu-springboot/">
                     <div class="card-image">
                         
                         
-                        <img src="../medias/featureimages/7.jpg" class="responsive-img" alt="TCP建立连接">
+                        <img src="../medias/featureimages/5.jpg" class="responsive-img" alt="学习｜Docker部署SpringBoot">
                         
-                        <span class="card-title">TCP建立连接</span>
+                        <span class="card-title">学习｜Docker部署SpringBoot</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -747,65 +731,8 @@ tar <span class="token operator">-</span>xvf tar1<span class="token punctuation"
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-06-19
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-05-08
                         </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="../categories/%E9%9D%A2%E7%BB%8F/" class="post-category">
-                                    面经
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="../tags/tcp/">
-                        <span class="chip bg-color">tcp</span>
-                    </a>
-                    
-                    <a href="../tags/%E9%9D%A2%E7%BB%8F/">
-                        <span class="chip bg-color">面经</span>
-                    </a>
-                    
-                    <a href="../tags/%E7%BD%91%E7%BB%9C/">
-                        <span class="chip bg-color">网络</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="../xue-xi-docker-bu-shu-vue-xiang-mu/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="../medias/featureimages/15.jpg" class="responsive-img" alt="学习｜Docker部署Vue项目">
-                        
-                        <span class="card-title">学习｜Docker部署Vue项目</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-05-09
-                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -825,8 +752,72 @@ tar <span class="token operator">-</span>xvf tar1<span class="token punctuation"
                         <span class="chip bg-color">docker</span>
                     </a>
                     
-                    <a href="../tags/vue/">
-                        <span class="chip bg-color">vue</span>
+                    <a href="../tags/springboot/">
+                        <span class="chip bg-color">springboot</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="../paperreading2/">
+                    <div class="card-image">
+                        
+                        <img src="https://picturebed-of-hwblog.oss-cn-hangzhou.aliyuncs.com/img/202204102008820.jpg" class="responsive-img" alt="论文阅读｜CycleGAN">
+                        
+                        <span class="card-title">论文阅读｜CycleGAN</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-10
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="../categories/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" class="post-category">
+                                    文献阅读
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="../tags/cyclegan/">
+                        <span class="chip bg-color">cyclegan</span>
+                    </a>
+                    
+                    <a href="../tags/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/">
+                        <span class="chip bg-color">风格迁移</span>
+                    </a>
+                    
+                    <a href="../tags/image-to-image-translation/">
+                        <span class="chip bg-color">image-to-image translation</span>
+                    </a>
+                    
+                    <a href="../tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
+                        <span class="chip bg-color">图像处理</span>
+                    </a>
+                    
+                    <a href="../tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
+                        <span class="chip bg-color">深度学习</span>
                     </a>
                     
                 </div>
