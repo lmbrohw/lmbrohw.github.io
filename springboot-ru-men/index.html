@@ -367,14 +367,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.4k
+                    2.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    11 分
                 </div>
                 
 
@@ -551,6 +551,97 @@ mybatis<span class="token punctuation">.</span>mapper<span class="token operator
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">//这样的语句，快捷键是:new Book().var然后回车即可</span>
 <span class="token class-name">Book</span> book <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Book</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="11-关于XML文件"><a href="#11-关于XML文件" class="headerlink" title="11.关于XML文件"></a>11.关于XML文件</h2><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span><span class="token operator">?</span>xml version<span class="token operator">=</span><span class="token string">"1.0"</span> encoding<span class="token operator">=</span><span class="token string">"UTF-8"</span><span class="token operator">?</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token constant">DOCTYPE</span> mapper <span class="token constant">PUBLIC</span> <span class="token string">"-//mybatis.org//DTD Mapper 3.0//EN"</span>
+        <span class="token string">"http://mybatis.org/dtd/mybatis-3-mapper.dtd"</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>在mybatis中，映射文件中的namespace是用于绑定dao接口的，即面向接口编程。当你的namespace绑定接口后，可以不用写接口实现类
+mybatis会通过绑定自动帮你找到对应要执行的sql语句<span class="token operator">--</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> xmlns<span class="token operator">=</span><span class="token string">"http://mybatis.org/schema/mybatis-mapper"</span> <span class="token operator">--</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>mapper namespace<span class="token operator">=</span><span class="token string">"com.example.page.mapper.UserMapper"</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>在mybatis中有一个resultMap标签，它是为了映射select查询出来结果的集合，其主要作用是将实体类中的字段与数据表中的字段进行关联映射
+注意
+当实体类中的字段与数据库表中的字段相同时，可以将resultMap标签中的关联关系忽略不写
+当实体类中的字段与数据库中的字段不相同时，就需要在resultMap标签中将实体类字段与数据库字段一一进行关联映射，或者开启驼峰规则，让它自动转换
+<span class="token operator">--</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>resultMap id<span class="token operator">=</span><span class="token string">"result"</span> type<span class="token operator">=</span><span class="token string">"com.example.page.entity.User"</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>result property<span class="token operator">=</span><span class="token string">"userId"</span> column<span class="token operator">=</span><span class="token string">"userId"</span><span class="token operator">/</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>result property<span class="token operator">=</span><span class="token string">"userDate"</span> column<span class="token operator">=</span><span class="token string">"userDate"</span><span class="token operator">/</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>result property<span class="token operator">=</span><span class="token string">"userName"</span> column<span class="token operator">=</span><span class="token string">"userName"</span><span class="token operator">/</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>result property<span class="token operator">=</span><span class="token string">"userAddress"</span> column<span class="token operator">=</span><span class="token string">"userAddress"</span><span class="token operator">/</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>resultMap<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>    ListUser<span class="token operator">--</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>select id<span class="token operator">=</span><span class="token string">"ListUser"</span> resultMap<span class="token operator">=</span><span class="token string">"result"</span><span class="token operator">&gt;</span>
+        select <span class="token operator">*</span> from user
+    <span class="token operator">&lt;</span><span class="token operator">/</span>select<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>    在Mapper<span class="token punctuation">.</span>xml中可以通过#<span class="token punctuation">{</span><span class="token punctuation">}</span>获取参数：
+parameterType控制参数类型
+#<span class="token punctuation">{</span><span class="token punctuation">}</span>获取参数内容：
+<span class="token number">1</span>：使用索引，从<span class="token number">0</span>开始#<span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span>表示第一个参数
+<span class="token number">2</span>：也可以使用#<span class="token punctuation">{</span>param1<span class="token punctuation">}</span>第一个参数
+<span class="token number">3</span>：如果参数时对象#<span class="token punctuation">{</span>属性名<span class="token punctuation">}</span>
+<span class="token number">4</span>：如果参数是map写成#<span class="token punctuation">{</span>key<span class="token punctuation">}</span>
+#<span class="token punctuation">{</span><span class="token punctuation">}</span>和$<span class="token punctuation">{</span><span class="token punctuation">}</span>的区别：
+#<span class="token punctuation">{</span><span class="token punctuation">}</span>获取参数的内容支持，索引获取，param1获取指定位置参数，并且sql使用<span class="token operator">?</span>占位符，$<span class="token punctuation">{</span><span class="token punctuation">}</span>字符串拼接不使用<span class="token operator">?</span><span class="token punctuation">,</span>默认找$<span class="token punctuation">{</span>内容<span class="token punctuation">}</span>内容的get<span class="token operator">/</span><span class="token keyword">set</span>方法
+<span class="token operator">--</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>    findUserByName<span class="token operator">--</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>select id<span class="token operator">=</span><span class="token string">"findUserByName"</span> resultMap<span class="token operator">=</span><span class="token string">"result"</span> parameterType<span class="token operator">=</span><span class="token string">"String"</span><span class="token operator">&gt;</span>
+        select <span class="token operator">*</span> from user
+        where userName like <span class="token function">concat</span><span class="token punctuation">(</span><span class="token function">concat</span><span class="token punctuation">(</span><span class="token string">'%'</span><span class="token punctuation">,</span>#<span class="token punctuation">{</span>userName<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'%'</span><span class="token punctuation">)</span>
+        order by userId desc
+    <span class="token operator">&lt;</span><span class="token operator">/</span>select<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>    queryPage<span class="token operator">--</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>select id<span class="token operator">=</span><span class="token string">"queryPage"</span> resultMap<span class="token operator">=</span><span class="token string">"result"</span> parameterType<span class="token operator">=</span><span class="token string">"Integer"</span><span class="token operator">&gt;</span>
+        select <span class="token operator">*</span> from user
+        order by userId desc
+        limit #<span class="token punctuation">{</span>startRows<span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token number">5</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>select<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>    select <span class="token function">count</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span>：查询所有行
+select <span class="token function">count</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>：忽略所有列，统计行数，与列无关<span class="token operator">--</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>    getRowCount<span class="token operator">--</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>select id<span class="token operator">=</span><span class="token string">"getRowCount"</span> resultType<span class="token operator">=</span><span class="token string">"Integer"</span><span class="token operator">&gt;</span>
+        select <span class="token function">count</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> from user
+    <span class="token operator">&lt;</span><span class="token operator">/</span>select<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>    insertUser<span class="token operator">--</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>insert id<span class="token operator">=</span><span class="token string">"insertUser"</span> parameterType<span class="token operator">=</span><span class="token string">"com.example.page.entity.User"</span><span class="token operator">&gt;</span>
+        insert into <span class="token function">user</span>
+        <span class="token punctuation">(</span>userId<span class="token punctuation">,</span>userDate<span class="token punctuation">,</span>userName<span class="token punctuation">,</span>userAddress<span class="token punctuation">)</span>
+        <span class="token function">values</span>
+        <span class="token punctuation">(</span>#<span class="token punctuation">{</span>userId<span class="token punctuation">}</span><span class="token punctuation">,</span>#<span class="token punctuation">{</span>userDate<span class="token punctuation">}</span><span class="token punctuation">,</span>#<span class="token punctuation">{</span>userName<span class="token punctuation">}</span><span class="token punctuation">,</span>#<span class="token punctuation">{</span>userAddress<span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>insert<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>    <span class="token keyword">delete</span><span class="token operator">--</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token keyword">delete</span> id<span class="token operator">=</span><span class="token string">"delete"</span> parameterType<span class="token operator">=</span><span class="token string">"int"</span><span class="token operator">&gt;</span>
+        <span class="token keyword">delete</span> from user where userId <span class="token operator">=</span> #<span class="token punctuation">{</span>userId<span class="token punctuation">}</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span><span class="token keyword">delete</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>    update<span class="token operator">--</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>update id<span class="token operator">=</span><span class="token string">"Update"</span> parameterType<span class="token operator">=</span><span class="token string">"com.example.page.entity.User"</span><span class="token operator">&gt;</span>
+        update user
+        <span class="token keyword">set</span> user<span class="token punctuation">.</span>userDate<span class="token operator">=</span>#<span class="token punctuation">{</span>userDate<span class="token punctuation">}</span><span class="token punctuation">,</span>user<span class="token punctuation">.</span>userName<span class="token operator">=</span>#<span class="token punctuation">{</span>userName<span class="token punctuation">}</span><span class="token punctuation">,</span>user<span class="token punctuation">.</span>userAddress<span class="token operator">=</span>#<span class="token punctuation">{</span>userAddress<span class="token punctuation">}</span>
+        where user<span class="token punctuation">.</span>userId<span class="token operator">=</span>#<span class="token punctuation">{</span>userId<span class="token punctuation">}</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>update<span class="token operator">&gt;</span>
+ 
+<span class="token operator">&lt;</span><span class="token operator">/</span>mapper<span class="token operator">&gt;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p><code>resultType</code> 和 <code>resultMap</code> 的区别<br><code>resultType</code> 和 <code>resultMap</code> 都是 MyBatis 中用于定义结果映射的方式，用于将数据库查询的结果映射到 Java 对象。</p>
+</blockquote>
+<ol>
+<li><strong>resultType：</strong> <code>resultType</code> 是一种简化的结果映射方式，直接指定返回的结果应该映射到的 Java 类型。在 SQL 查询中，可以使用 <code>resultType</code> 属性指定返回结果映射的类型。例如：</li>
+</ol>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>getUsers<span class="token punctuation">"</span></span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com.example.User<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    SELECT id, username, email FROM user;
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>上述示例中，查询的结果将会被映射到 <code>com.example.User</code> 类型的对象列表。<code>resultType</code> 可以直接指定返回的 Java 类型，但是要求数据库查询的结果列名与 Java 类型的属性名一一对应，保证返回的字段的名字和Java类对象的属性名字完全一样，否则映射会失败。</p>
+<ol>
+<li><strong>resultMap：</strong> <code>resultMap</code> 是一种更灵活、可定制性更高的结果映射方式。使用 <code>resultMap</code>，你可以定义复杂的映射规则，将数据库查询的结果与 Java 类型之间进行灵活的映射。使用 <code>resultMap</code>，你可以指定具体的映射规则，对每个字段进行更细粒度的控制，包括指定列名、属性名、类型转换等。</li>
+</ol>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>resultMap</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UserResultMap<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com.example.User<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>id</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>id<span class="token punctuation">"</span></span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>user_id<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>result</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>username<span class="token punctuation">"</span></span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>user_name<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>result</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>user_email<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>resultMap</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>上述示例中，我们定义了一个 <code>resultMap</code> 名为 “UserResultMap”，将数据库表中的 “user_id” 映射到 Java 类型的 “id” 属性，”user_name” 映射到 “username” 属性，”user_email” 映射到 “email” 属性。</p>
+<p><code>resultMap</code> 具有更高的可定制性，适用于复杂的查询情况，尤其是当数据库查询结果与 Java 类型之间存在差异时，使用 <code>resultMap</code> 可以更加灵活地处理映射关系。此外，使用 <code>resultMap</code> 也可以提高代码的可维护性和可读性，因为映射规则明确地定义在一个地方。</p>
+
                 
             </div>
             <hr/>
@@ -1080,7 +1171,7 @@ mybatis<span class="token punctuation">.</span>mapper<span class="token operator
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">22.2k</span>&nbsp;字
+                class="white-color">23.3k</span>&nbsp;字
             
             
             
